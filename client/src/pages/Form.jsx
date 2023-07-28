@@ -1,4 +1,33 @@
 import { useState } from 'react';
+
+import {
+  FormControl,
+  FormLabel,
+  FormErrorMessage,
+  FormHelperText,
+} from '@chakra-ui/react'
+
+
+const Form = () => {
+ 
+  return(
+    <div>
+    <FormControl>
+      <FormLabel>Email address</FormLabel>
+      <Input type='email' />
+      <FormHelperText>We'll never share your email.</FormHelperText>
+    </FormControl>
+    </div>
+    )
+
+
+}
+
+
+
+export default Form;
+/*
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useMutation, useQuery } from '@apollo/client';
 import { QUERY_TECH } from '../utils/queries';
@@ -83,3 +112,5 @@ const Matchup = () => {
 };
 
 export default Matchup;
+
+*/
