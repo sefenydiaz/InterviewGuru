@@ -58,6 +58,22 @@ const Form = () => {
               value={formData.role}
             />
         </FormControl>
+        <FormControl id="experience" isRequired>
+          <FormLabel>Experience</FormLabel>
+            <Select 
+              placeholder='Select Experience Level'  
+              onChange={handleInputChange} 
+              name='experience'
+              value={formData.experience}
+              >
+              <option>Internship</option>
+              <option>Entry Level</option>
+              <option>Associate</option>
+              <option>Senior</option>
+              <option>Director</option>
+              <option>Executive</option>
+            </Select>
+        </FormControl>
       </form>
     </div>
     )
