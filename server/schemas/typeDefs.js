@@ -8,7 +8,7 @@ type Query {
 }
 
 type Mutation {
-    addQuestion(question: String!): Question
+    addQuestion: Question
 }
 `;
 

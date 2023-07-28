@@ -1,4 +1,4 @@
-const { User } = require("../models");
+const { User, Question } = require("../models");
 const { signToken, AuthenticationError, openAI } = require("../utils");
 
 const resolvers = {
@@ -19,7 +19,11 @@ const resolvers = {
         ],
       });
 
-      return prompt;
+      const questionData = prompt.data.choices[0].message.content;
+
+      const question = await Question.create({ question: questionData });
+
+      return question;
     },
   },
 };
