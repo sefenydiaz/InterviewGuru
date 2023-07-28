@@ -5,18 +5,45 @@ import {
   FormLabel,
   FormErrorMessage,
   FormHelperText,
+  Select
 } from '@chakra-ui/react'
 
 
 const Form = () => {
- 
+ //store form input values
+ const [formData, setFormData] = useState({
+  industry: '',
+  role: '',
+  experience: '',
+ })
+
+ const handleInputChange = (event) => {
+  const { name, value } = event.target;
+  setFormData({ ...formData, [name]: value });
+ }
+
+ const handleFormSubmit = (event) => {
+  event.preventDefault();
+  console.log('Form data submitted: ', formData)
+ }
   return(
     <div>
-    <FormControl>
-      <FormLabel>Email address</FormLabel>
-      <Input type='email' />
-      <FormHelperText>We'll never share your email.</FormHelperText>
-    </FormControl>
+      <form onSubmit={handleFormSubmit}>
+        <FormControl id="industry" isRequired>
+          <FormLabel>Industry</FormLabel>
+            <Select placeholder='Select Industry'>
+              <option>Technology</option>
+              <option>Healthcare</option>
+              <option>Finance</option>
+              <option>Education</option>
+              <option>Retail</option>
+              <option>Manufactoring</option>
+              <option>Energy</option>
+              <option>Media & Entertainment</option>
+              <option>Government & Public Services</option>
+            </Select>
+        </FormControl>
+      </form>
     </div>
     )
 
