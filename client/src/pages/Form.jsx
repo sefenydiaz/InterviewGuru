@@ -6,7 +6,8 @@ import {
   FormErrorMessage,
   FormHelperText,
   Select,
-  Input
+  Input,
+  Button
 } from '@chakra-ui/react'
 
 
@@ -74,6 +75,7 @@ const Form = () => {
               <option>Executive</option>
             </Select>
         </FormControl>
+        <Button type="submit">Submit</Button>
       </form>
     </div>
     )
