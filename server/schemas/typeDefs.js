@@ -1,10 +1,15 @@
 const typeDefs = `
-type User {
-    _id: ID
-    firstName: String
-    lastName: String
-    email: String
-    
+type Question {
+    question: String!
 }
-`
+
+type Query {
+    dummyQuery: String
+}
+
+type Mutation {
+    addQuestion(question: String!): Question
+}
+`;
+
 module.exports = typeDefs;
