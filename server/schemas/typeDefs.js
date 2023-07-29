@@ -6,6 +6,11 @@ type User {
     email: String
 }
 
+type Industry {
+    _id : ID!
+    name: String!
+}
+
 type Question {
     _id: ID!
     question: String!

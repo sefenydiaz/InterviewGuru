@@ -1,4 +1,5 @@
-const { User, Question } = require("../models");
+const { User, Question} = require("../models");
+import Industry from "../models/Industry";
 const { signToken, AuthenticationError, openAI } = require("../utils");
 
 const resolvers = {
@@ -24,6 +25,9 @@ const resolvers = {
       } catch (error){
         console.log(error)
       }
+    },
+    industry: async () => {
+      return await Industry.find();
     }
   },
   Mutation: {
