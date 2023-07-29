@@ -1,4 +1,4 @@
-const { User, Question } = require("../models");
+const { User, Question, Answer } = require("../models");
 const { signToken, AuthenticationError, openAI } = require("../utils");
 
 const resolvers = {
@@ -32,6 +32,17 @@ const resolvers = {
       const question = await Question.create({ question: questionData });
 
       return question;
+    },
+    addAnswer: async (parent, { answer }, context) => {
+      if (context.question) {
+        const answer = new Answer({ answer });
+
+        await Question.findByIdAndUpdate(context.question.id, {
+          answer: answer,
+        });
+
+        return answer;
+      }
     },
   },
 };
