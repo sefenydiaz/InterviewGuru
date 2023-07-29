@@ -6,6 +6,14 @@ const resolvers = {
     questions: async () => {
       return await Question.find();
     },
+    users: async () => {
+      try{
+        const users = await User.find();
+        return users
+      } catch (error) {
+        console.log(error)
+      }
+    }
   },
   Mutation: {
     addQuestion: async (parent, args) => {
