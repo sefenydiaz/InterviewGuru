@@ -78,7 +78,7 @@ function Login () {
                 <FormControl id="email">
                   <FormLabel>Email: </FormLabel>
                     <Input
-                      placeholder="Your email"
+                      placeholder="Email"
                       name="email"
                       type="email"
                       value={formState.email}
@@ -86,14 +86,17 @@ function Login () {
                       required
                     />
                 </FormControl>
-                <input
-                  className="form-input"
-                  placeholder="******"
-                  name="password"
-                  type="password"
-                  value={formState.password}
-                  onChange={handleChange}
-                />
+                <FormControl id="password">
+                  <FormLabel>Password: </FormLabel>
+                    <Input
+                      placeholder="Password"
+                      name="password"
+                      type="password"
+                      value={formState.password}
+                      onChange={handleChange}
+                      required
+                    />
+                </FormControl>
                 <button
                   className="btn btn-block btn-primary"
                   style={{ cursor: 'pointer' }}
