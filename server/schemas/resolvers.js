@@ -2,6 +2,22 @@ const { User, Question } = require("../models");
 const { signToken, AuthenticationError, openAI } = require("../utils");
 
 const resolvers = {
+  Query: {
+    questions: async () => {
+      return await Question.find();
+    },
+    question: async (parent, { _id }) => {
+      return await Question.findById(_id);
+    },
+    users: async () => {
+      try{
+        const users = await User.find();
+        return users
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  },
   Mutation: {
     addQuestion: async (parent, args) => {
       const prompt = await openAI.createChatCompletion({
