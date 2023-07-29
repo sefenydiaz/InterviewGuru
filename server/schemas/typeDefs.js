@@ -26,6 +26,7 @@ type Query {
     question(_id: ID!): Question
     allUsers: [User]
     findUserById(id: ID!): User
+    industry: [Industry]
 }
 
 type Mutation {
