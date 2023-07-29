@@ -14,6 +14,12 @@ type Industry {
 type Question {
     _id: ID!
     question: String!
+    answer: Answer
+}
+
+type Answer {
+    _id: ID!
+    userAnswer: String!
 }
 
 type Auth {
@@ -30,7 +36,8 @@ type Query {
 }
 
 type Mutation {
-    addQuestion: Question
+    addQuestion: Question!
+    addAnswer(userAnswer: String!): Answer!
 }
 `;
 
