@@ -1,4 +1,7 @@
-const { User, Question } = require("../models");
+
+const { User, Question, Answer } = require("../models");
+
+import Industry from "../models/Industry";
 const { signToken, AuthenticationError, openAI } = require("../utils");
 
 const resolvers = {
@@ -10,20 +13,24 @@ const resolvers = {
       return await Question.findById(_id);
     },
     allUsers: async () => {
-      try{
+      try {
         const users = await User.find();
-        return users
+        return users;
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
     },
     findUserById: async (_, { id }) => {
-      try{
+      try {
         const user = await User.findById(id);
-        return user
-      } catch (error){
-        console.log(error)
+        return user;
+      } catch (error) {
+        console.log(error);
       }
+    },
+
+    industry: async () => {
+      return await Industry.find();
     }
   },
   Mutation: {
@@ -48,6 +55,9 @@ const resolvers = {
       const question = await Question.create({ question: questionData });
 
       return question;
+    },
+    addAnswer: async (parent, args) => {
+      return await Answer.create(args);
     },
   },
 };

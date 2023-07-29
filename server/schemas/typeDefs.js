@@ -6,9 +6,20 @@ type User {
     email: String
 }
 
+type Industry {
+    _id : ID!
+    name: String!
+}
+
 type Question {
     _id: ID!
     question: String!
+    answer: Answer
+}
+
+type Answer {
+    _id: ID!
+    userAnswer: String!
 }
 
 type Auth {
@@ -21,10 +32,12 @@ type Query {
     question(_id: ID!): Question
     allUsers: [User]
     findUserById(id: ID!): User
+    industry: [Industry]
 }
 
 type Mutation {
-    addQuestion: Question
+    addQuestion: Question!
+    addAnswer(userAnswer: String!): Answer!
 }
 `;
 
