@@ -9,6 +9,22 @@ const resolvers = {
     question: async (parent, { _id }) => {
       return await Question.findById(_id);
     },
+    allUsers: async () => {
+      try {
+        const users = await User.find();
+        return users;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    findUserById: async (_, { id }) => {
+      try {
+        const user = await User.findById(id);
+        return user;
+      } catch (error) {
+        console.log(error);
+      }
+    },
   },
   Mutation: {
     addQuestion: async (parent, args) => {
