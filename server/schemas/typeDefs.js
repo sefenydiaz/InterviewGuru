@@ -1,10 +1,11 @@
 const typeDefs = `
 type Question {
+    _id: ID!
     question: String!
 }
 
 type Query {
-    dummyQuery: String
+    questions: [Question]
 }
 
 type Mutation {
