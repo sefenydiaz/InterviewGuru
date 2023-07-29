@@ -33,16 +33,8 @@ const resolvers = {
 
       return question;
     },
-    addAnswer: async (parent, { answer }, context) => {
-      if (context.question) {
-        const answer = new Answer({ answer });
-
-        await Question.findByIdAndUpdate(context.question.id, {
-          answer: answer,
-        });
-
-        return answer;
-      }
+    addAnswerToQuestion: async (parent, { questionId, userAnswer }) => {
+      const question = question.find((question) => question._id === questionId);
     },
   },
 };
