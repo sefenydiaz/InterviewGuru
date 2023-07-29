@@ -2,11 +2,24 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations';
-
 import Auth from '../utils/auth';
 
-const Login = (props) => {
+import {
+  Box,
+  FormControl,
+  FormLabel,
+  Input,
+  Button,
+  Heading,
+  Divider,
+  ChakraProvider,
+  VStack,
+} from '@chakra-ui/react';
+
+
+function Login () {
   const [formState, setFormState] = useState({ email: '', password: '' });
+  //useMutation hook to use login mutation
   const [login, { error, data }] = useMutation(LOGIN_USER);
 
   // update state based on form input changes
