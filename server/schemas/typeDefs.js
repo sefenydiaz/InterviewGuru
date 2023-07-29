@@ -18,6 +18,7 @@ type Auth {
 
 type Query {
     questions: [Question]
+    question(_id: ID!): Question
     users: [User]
 }
 
