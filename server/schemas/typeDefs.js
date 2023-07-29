@@ -6,6 +6,11 @@ type User {
     email: String
 }
 
+type Industry {
+    _id : ID!
+    name: String!
+}
+
 type Question {
     _id: ID!
     question: String!
@@ -21,6 +26,7 @@ type Query {
     question(_id: ID!): Question
     allUsers: [User]
     findUserById(id: ID!): User
+    industry: [Industry]
 }
 
 type Mutation {

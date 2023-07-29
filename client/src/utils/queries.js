@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client';
 
-export const QUERY_TECH = gql`
+export const QUERY_INDUSTRY = gql`
   query tech {
     tech {
       _id
