@@ -12,7 +12,6 @@ import {
   Button,
   Heading,
   Divider,
-  ChakraProvider,
   VStack,
 } from '@chakra-ui/react';
 
@@ -20,7 +19,7 @@ import {
 function Login () {
   const [formState, setFormState] = useState({ email: '', password: '' });
   //useMutation hook to use login mutation
-  const [login, { error, data }] = useMutation(LOGIN_USER);
+  const [login, { data }] = useMutation(LOGIN_USER);
 
   // update state based on form input changes
   const handleChange = (event) => {
@@ -42,8 +41,8 @@ function Login () {
       });
 
       Auth.login(data.login.token);
-    } catch (e) {
-      console.error(e);
+    } catch (error) {
+      console.error(error);
     }
 
     // clear form values
@@ -97,26 +96,22 @@ function Login () {
                       required
                     />
                 </FormControl>
-                <button
-                  className="btn btn-block btn-primary"
+                <Button
+                  colorScheme="blue"
+                  mt={4}
+                  w="100%"
                   style={{ cursor: 'pointer' }}
                   type="submit"
                 >
-                  Submit
-                </button>
+                  Login!
+                </Button>
               </form>
             )}
+              </VStack>
+              </Box>
+          )}
 
-            {error && (
-              <div className="my-3 p-3 bg-danger text-white">
-                {error.message}
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
-    </main>
-  );
-};
+          
+
 
 export default Login;
