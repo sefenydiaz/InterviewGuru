@@ -54,11 +54,20 @@ function Login () {
   };
 
   return (
-    <main className="flex-row justify-center mb-4">
-      <div className="col-12 col-lg-10">
-        <div className="card">
-          <h4 className="card-header bg-dark text-light p-2">Login</h4>
-          <div className="card-body">
+    <Box
+    maxW="md"
+    borderWidth="1px"
+    borderRadius="lg"
+    p={6}
+    m="auto"
+    mt={10}
+    boxShadow="md"
+  >
+    <VStack spacing={6}>
+      <Heading as="h1" size="lg">
+        Login
+      </Heading>
+      <Divider />
             {data ? (
               <p>
                 Success! You may now head{' '}
@@ -66,14 +75,17 @@ function Login () {
               </p>
             ) : (
               <form onSubmit={handleFormSubmit}>
-                <input
-                  className="form-input"
-                  placeholder="Your email"
-                  name="email"
-                  type="email"
-                  value={formState.email}
-                  onChange={handleChange}
-                />
+                <FormControl id="email">
+                  <FormLabel>Email: </FormLabel>
+                    <Input
+                      placeholder="Your email"
+                      name="email"
+                      type="email"
+                      value={formState.email}
+                      onChange={handleChange}
+                      required
+                    />
+                </FormControl>
                 <input
                   className="form-input"
                   placeholder="******"
