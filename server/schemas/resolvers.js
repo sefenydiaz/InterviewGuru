@@ -49,8 +49,8 @@ const resolvers = {
 
       return question;
     },
-    addAnswerToQuestion: async (parent, { questionId, userAnswer }) => {
-      const question = question.find((question) => question._id === questionId);
+    addAnswer: async (parent, args) => {
+      return await Answer.create(args);
     },
   },
 };

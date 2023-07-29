@@ -8,7 +8,10 @@ const questionSchema = new Schema({
     type: String,
     required: true,
   },
-  answer: Answer.schema,
+  answer: {
+    type: Schema.Types.ObjectId,
+    ref: "Answer",
+  },
 });
 
 const Question = mongoose.model("Question", questionSchema);

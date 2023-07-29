@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const answerSchema = new Schema({
-  answer: {
+  userAnswer: {
     type: String,
     required: true,
   },

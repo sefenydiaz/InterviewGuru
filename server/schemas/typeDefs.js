@@ -31,7 +31,7 @@ type Query {
 
 type Mutation {
     addQuestion: Question!
-    addAnswerToQuestion(questionId: ID!, userAnswer: String!): Answer!
+    addAnswer(userAnswer: String!): Answer!
 }
 `;
 
