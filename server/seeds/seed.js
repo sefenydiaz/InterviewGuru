@@ -5,7 +5,7 @@ import cleanDB from './cleanDB'
 const industryData = require('./industryData.json')
 
 db.once('open', async () => {
-  await cleanDB('Industry');
+  // await cleanDB('Industry');
 
   await Industry.insertMany(industryData);
 
