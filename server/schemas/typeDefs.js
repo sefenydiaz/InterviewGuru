@@ -6,6 +6,7 @@ type Question {
 
 type Query {
     questions: [Question]
+    question(_id: ID!): Question
 }
 
 type Mutation {
