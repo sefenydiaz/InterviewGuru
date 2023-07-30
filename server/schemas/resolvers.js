@@ -18,6 +18,9 @@ const resolvers = {
     allFeedback: async () => {
       return await Feedback.find();
     },
+    feedback: async (parent, { _id }) => {
+      return await Feedback.findById(_id);
+    },
     allUsers: async () => {
       try {
         const users = await User.find();

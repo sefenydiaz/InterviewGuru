@@ -33,14 +33,15 @@ type Auth {
   }
 
 type Query {
-    questions: [Question]
-    question(_id: ID!): Question
-    answers: [Answer]
-    answer: Answer
+    questions: [Question!]
+    question(_id: ID!): Question!
+    answers: [Answer!]
+    answer: Answer!
     allFeedback: [Feedback!]
-    allUsers: [User]
-    findUserById(id: ID!): User
-    industries: [Industry]
+    feedback(_id: ID!): Feedback!
+    allUsers: [User!]
+    findUserById(id: ID!): User!
+    industries: [Industry!]
     
 }
 
