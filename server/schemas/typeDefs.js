@@ -30,14 +30,18 @@ type Auth {
 type Query {
     questions: [Question]
     question(_id: ID!): Question
+    answers: [Answer]
+    answer: Answer
     allUsers: [User]
     findUserById(id: ID!): User
-    industry: [Industry]
+    industries: [Industry]
+    
 }
 
 type Mutation {
     addQuestion: Question!
     addAnswer(userAnswer: String!): Answer!
+    getFeedback: Feedback!
 }
 `;
 
