@@ -22,22 +22,33 @@ type Answer {
     userAnswer: String!
 }
 
+type Feedback {
+    _id: ID!
+    userFeedback: String!
+}
+
 type Auth {
     token: ID
     user: User
   }
 
 type Query {
-    questions: [Question]
-    question(_id: ID!): Question
-    allUsers: [User]
-    findUserById(id: ID!): User
-    industry: [Industry]
+    questions: [Question!]
+    question(_id: ID!): Question!
+    answers: [Answer!]
+    answer: Answer!
+    allFeedback: [Feedback!]
+    feedback(_id: ID!): Feedback!
+    allUsers: [User!]
+    findUserById(id: ID!): User!
+    industries: [Industry!]
+    
 }
 
 type Mutation {
     addQuestion: Question!
     addAnswer(userAnswer: String!): Answer!
+    getFeedback: Feedback!
 }
 `;
 
