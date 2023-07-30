@@ -22,6 +22,11 @@ type Answer {
     userAnswer: String!
 }
 
+type Feedback {
+    _id: ID!
+    userFeedback: String!
+}
+
 type Auth {
     token: ID
     user: User
@@ -32,6 +37,7 @@ type Query {
     question(_id: ID!): Question
     answers: [Answer]
     answer: Answer
+    allFeedback: [Feedback!]
     allUsers: [User]
     findUserById(id: ID!): User
     industries: [Industry]

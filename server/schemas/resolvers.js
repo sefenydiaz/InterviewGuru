@@ -1,4 +1,4 @@
-const { User, Question, Answer, Industry } = require("../models");
+const { User, Question, Answer, Feedback, Industry } = require("../models");
 const { signToken, AuthenticationError, openAI } = require("../utils");
 
 const resolvers = {
@@ -14,6 +14,9 @@ const resolvers = {
     },
     answer: async (parent, { _id }) => {
       return await Answer.findById(_id);
+    },
+    allFeedback: async () => {
+      return await Feedback.find();
     },
     allUsers: async () => {
       try {
@@ -68,24 +71,21 @@ const resolvers = {
           {
             role: "system",
             content:
-              "You are an interviewer for a Data Analytics company for a Fortune 500 company.",
-          },
-          {
-            role: "user",
-            content: "What is one question you have for me for a candidate?",
-          },
-          {
-            role: "assistant",
-            content:
-              "Can you provide an example of a data analytics project you have worked on, including the steps you took to gather and analyze the data, the insights you derived from the analysis, and the impact it had on the business?",
+              "You are an interviewer for a Data Analytics company for a Fortune 500 company. You just asked the following question: Can you provide an example of a data analytics project you have worked on, including the steps you took to gather and analyze the data, the insights you derived from the analysis, and the impact it had on the business?",
           },
           {
             role: "user",
             content:
-              "Can you rate this answer on a scale of 1 to 5? Answer: I once needed to find user satisfaction on a coffee pot using Amazon reviews for the product. First, I started by cleaning the data using several functions. Then I used bar graphs to show the customer satisfaction by grouping the reviews as either satisfied, neutral, or unsatisfied.",
+              "Can you rate this answer on a scale of 1 to 5 and a feedback statement using the STAR method? Answer: I once needed to find user satisfaction on a coffee pot using Amazon reviews for the product. First, I started by cleaning the data using several functions. Then I used bar graphs to show the customer satisfaction by grouping the reviews as either satisfied, neutral, or unsatisfied.",
           },
         ],
       });
+
+      const feedbackData = prompt.data.choices[0].message.content;
+
+      const feedback = await Feedback.create({ userFeedback: feedbackData });
+
+      return feedback;
     },
     // addAnswerToQuestion: async (parent, { _id }, context) => {},
   },
