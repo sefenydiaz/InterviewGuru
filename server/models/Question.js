@@ -1,17 +1,28 @@
 const mongoose = require("mongoose");
 
 const { Schema } = mongoose;
-const Answer = require("./Answer");
+
+const feedbackSchema = new Schema({
+  userFeedback: {
+    type: String,
+    required: false,
+  },
+});
+
+const answerSchema = new Schema({
+  userAnswer: {
+    type: String,
+    required: false,
+  },
+});
 
 const questionSchema = new Schema({
   question: {
     type: String,
     required: true,
   },
-  answer: {
-    type: Schema.Types.ObjectId,
-    ref: "Answer",
-  },
+  answer: answerSchema,
+  feedback: feedbackSchema,
 });
 
 const Question = mongoose.model("Question", questionSchema);

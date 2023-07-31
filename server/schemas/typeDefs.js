@@ -15,6 +15,7 @@ type Question {
     _id: ID!
     question: String!
     answer: Answer
+    feedback: Feedback
 }
 
 type Answer {
@@ -47,11 +48,15 @@ type Query {
 
 type Mutation {
     addQuestion: Question!
+
     addAnswer(userAnswer: String!): Answer!
     getFeedback: Feedback!
     
     addUser(name: String!, email: String!, password: String!): Auth
-    login(email: String!, password: String!): Auth
+    login(email: String!, password: String!): Aut
+    addAnswer(_id: String!, answer: String!): Question!
+    getFeedback(_id: String!): Question!
+
 }
 `;
 

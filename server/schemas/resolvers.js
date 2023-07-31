@@ -90,30 +90,36 @@ const resolvers = {
       return question;
     },
     addAnswer: async (parent, args) => {
-      return await Answer.create(args);
+      const question = await Question.findByIdAndUpdate(args._id, {
+        answer: { userAnswer: args.answer },
+      });
+
+      return question;
     },
     getFeedback: async (parent, args) => {
+      const question = await Question.findById(args._id);
+
+      const answer = question.answer.userAnswer;
+
       const prompt = await openAI.createChatCompletion({
         model: "gpt-3.5-turbo",
         messages: [
           {
             role: "system",
-            content:
-              "You are an interviewer for a Data Analytics company for a Fortune 500 company. You just asked the following question: Can you provide an example of a data analytics project you have worked on, including the steps you took to gather and analyze the data, the insights you derived from the analysis, and the impact it had on the business?",
+            content: `You are an interviewer for a Data Analytics company for a Fortune 500 company. You just asked the following question: ${question}`,
           },
           {
             role: "user",
-            content:
-              "Can you rate this answer on a scale of 1 to 5 and a feedback statement using the STAR method? Answer: I once needed to find user satisfaction on a coffee pot using Amazon reviews for the product. First, I started by cleaning the data using several functions. Then I used bar graphs to show the customer satisfaction by grouping the reviews as either satisfied, neutral, or unsatisfied.",
+            content: `Can you rate this answer on a scale of 1 to 5 and a feedback statement using the STAR method? Answer: ${answer}.`,
           },
         ],
       });
 
       const feedbackData = prompt.data.choices[0].message.content;
 
-      const feedback = await Feedback.create({ userFeedback: feedbackData });
-
-      return feedback;
+      return await Question.findByIdAndUpdate(question._id, {
+        feedback: { userFeedback: feedbackData },
+      });
     },
     // addAnswerToQuestion: async (parent, { _id }, context) => {},
   },
