@@ -4,6 +4,7 @@ import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 import { ChakraProvider } from '@chakra-ui/react'; 
 import { Header } from './components/Header/index'
 import { Home } from './pages/Home'
+import { Interview } from './pages/Interview'
 import { Footer } from './components/Footer'
 
 
@@ -19,6 +20,7 @@ function App() {
           <div className="guru">
             <Header />
             <Home />
+            <Interview />
             <Footer />
           </div>
         </ApolloProvider>

@@ -1,7 +1,7 @@
 // "question" would need to be set to API response
 // "correctAnswer" would need to be set to API respnse as AI ${role}
 // might not need "answers" array
-export const quiz =  {
+const Interview =  {
   "quizTitle": "InterviewGuru Questions",
   "quizSynopsis": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim",
   "nrOfQuestions": "10",
@@ -26,7 +26,7 @@ export const quiz =  {
   ]};
 
 
-
+export default Interview;
 
 
 // import { useQuery, useMutation } from '@apollo/client';
