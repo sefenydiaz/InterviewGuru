@@ -1,24 +1,24 @@
 import { useState } from 'react';
 import Header from '../components/Header/index';
-import Form from './Resume';
-import About from './About';
-import Portfolio from './Portfolio';
-import Contact from './Contact';
+import Welcome from './Welcome'
+import Form from './Form';
+import Questions from './Questions';
+import Stats from './Stats';
 
 
-export default function MainPage() {
+export default function Home() {
   const [currentPage, setCurrentPage] = useState('Form');
   const renderPage = () => {
-    if (currentPage === 'About') {
-      return <About />;
+    if (currentPage === 'Welcome') {
+      return <Welcome />;
     }
-    if (currentPage === 'Resume') {
-      return <Resume />;
+    if (currentPage === 'Form') {
+      return <Form />;
     }
-    if (currentPage === 'Portfolio') {
-      return <Portfolio />;
+    if (currentPage === 'Questions') {
+      return <Questions />;
     }
-    return <Contact />;
+    return <Stats />;
   };
 const handlePageChange = (page) => setCurrentPage(page);
 
