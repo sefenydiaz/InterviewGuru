@@ -1,5 +1,14 @@
 import './App.css';
 //import { Outlet } from 'react-router-dom';
+<<<<<<< HEAD
+=======
+import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
+import { ChakraProvider } from '@chakra-ui/react'; 
+import { Header } from './components/Header/index'
+import { Home } from './pages/Home'
+import { Interview } from './pages/Interview'
+import { Footer } from './components/Footer'
+>>>>>>> 84bbc0b66acf491509fc1190353ed9f0275ade53
 
 import { ApolloClient, ApolloProvider, InMemoryCache, createHttpLink } from '@apollo/client';
 import { ChakraProvider } from '@chakra-ui/react'; 
@@ -38,9 +47,12 @@ function App() {
         <ApolloProvider client={client}>
           <div className="container">
             <Header />
+
             <div className="container">
             <Outlet />
             </div>
+
+
             <Footer />
           </div>
         </ApolloProvider>
