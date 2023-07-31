@@ -1,15 +1,43 @@
 import './App.css';
 //import { Outlet } from 'react-router-dom';
+<<<<<<< HEAD
+=======
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 import { ChakraProvider } from '@chakra-ui/react'; 
 import { Header } from './components/Header/index'
 import { Home } from './pages/Home'
 import { Interview } from './pages/Interview'
 import { Footer } from './components/Footer'
+>>>>>>> 84bbc0b66acf491509fc1190353ed9f0275ade53
 
+import { ApolloClient, ApolloProvider, InMemoryCache, createHttpLink } from '@apollo/client';
+import { ChakraProvider } from '@chakra-ui/react'; 
+import Header  from './components/Header/index'
+import Footer from './components/Footer/index'
+import { setContext } from '@apollo/client/link/context';
+import { Outlet } from 'react-router-dom';
+
+// Construct our main GraphQL API endpoint
+const httpLink = createHttpLink({
+  uri: '/graphql',
+});
+
+// Construct request middleware that will attach the JWT token to every request as an `authorization` header
+const authLink = setContext((_, { headers }) => {
+  // get the authentication token from local storage if it exists
+  const token = localStorage.getItem('id_token');
+  // return the headers to the context so httpLink can read them
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : '',
+    },
+  };
+});
 
 const client = new ApolloClient({
-  uri: '/graphql',
+  // Set up our client to execute the `authLink` middleware prior to making the request to our GraphQL API
+  link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
 
@@ -17,10 +45,14 @@ function App() {
   return (
       <ChakraProvider >
         <ApolloProvider client={client}>
-          <div className="guru">
+          <div className="container">
             <Header />
-            <Home />
-            <Interview />
+
+            <div className="container">
+            <Outlet />
+            </div>
+
+
             <Footer />
           </div>
         </ApolloProvider>
