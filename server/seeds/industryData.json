@@ -1,5 +1,29 @@
 [
     {
-        "name": "Coding"
+        "name": "Technology"
+    },
+    {
+        "name": "Healthcare"
+    },
+    {
+        "name": "Finance"
+    },
+    {
+        "name": "Education"
+    },
+    {
+        "name": "Retail"
+    },
+    {
+        "name": "Manufacturing"
+    },
+    {
+        "name": "Energy"
+    },
+    {
+        "name": "Media & Entertainment"
+    },
+    {
+        "name": "Government & Public Services"
     }
 ]

@@ -2,12 +2,24 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations';
-
 import Auth from '../utils/auth';
 
-const Login = (props) => {
+import {
+  Box,
+  FormControl,
+  FormLabel,
+  Input,
+  Button,
+  Heading,
+  Divider,
+  VStack,
+} from '@chakra-ui/react';
+
+
+function Login () {
   const [formState, setFormState] = useState({ email: '', password: '' });
-  const [login, { error, data }] = useMutation(LOGIN_USER);
+  //useMutation hook to use login mutation
+  const [login, { data }] = useMutation(LOGIN_USER);
 
   // update state based on form input changes
   const handleChange = (event) => {
@@ -29,8 +41,8 @@ const Login = (props) => {
       });
 
       Auth.login(data.login.token);
-    } catch (e) {
-      console.error(e);
+    } catch (error) {
+      console.error(error);
     }
 
     // clear form values
@@ -41,11 +53,20 @@ const Login = (props) => {
   };
 
   return (
-    <main className="flex-row justify-center mb-4">
-      <div className="col-12 col-lg-10">
-        <div className="card">
-          <h4 className="card-header bg-dark text-light p-2">Login</h4>
-          <div className="card-body">
+    <Box
+    maxW="md"
+    borderWidth="1px"
+    borderRadius="lg"
+    p={6}
+    m="auto"
+    mt={10}
+    boxShadow="md"
+  >
+    <VStack spacing={6}>
+      <Heading as="h1" size="lg">
+        Login
+      </Heading>
+      <Divider />
             {data ? (
               <p>
                 Success! You may now head{' '}
@@ -53,42 +74,44 @@ const Login = (props) => {
               </p>
             ) : (
               <form onSubmit={handleFormSubmit}>
-                <input
-                  className="form-input"
-                  placeholder="Your email"
-                  name="email"
-                  type="email"
-                  value={formState.email}
-                  onChange={handleChange}
-                />
-                <input
-                  className="form-input"
-                  placeholder="******"
-                  name="password"
-                  type="password"
-                  value={formState.password}
-                  onChange={handleChange}
-                />
-                <button
-                  className="btn btn-block btn-primary"
+                <FormControl id="email">
+                  <FormLabel>Email: </FormLabel>
+                    <Input
+                      placeholder="Email"
+                      name="email"
+                      type="email"
+                      value={formState.email}
+                      onChange={handleChange}
+                      required
+                    />
+                </FormControl>
+                <FormControl id="password">
+                  <FormLabel>Password: </FormLabel>
+                    <Input
+                      placeholder="Password"
+                      name="password"
+                      type="password"
+                      value={formState.password}
+                      onChange={handleChange}
+                      required
+                    />
+                </FormControl>
+                <Button
+                  colorScheme="blue"
+                  mt={4}
+                  w="100%"
                   style={{ cursor: 'pointer' }}
                   type="submit"
                 >
-                  Submit
-                </button>
+                  Login!
+                </Button>
               </form>
             )}
+              </VStack>
+              </Box>
+          )}
 
-            {error && (
-              <div className="my-3 p-3 bg-danger text-white">
-                {error.message}
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
-    </main>
-  );
-};
+          
+
 
 export default Login;

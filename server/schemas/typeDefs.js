@@ -6,9 +6,25 @@ type User {
     email: String
 }
 
+type Industry {
+    _id : ID!
+    name: String!
+}
+
 type Question {
     _id: ID!
     question: String!
+    answer: Answer
+}
+
+type Answer {
+    _id: ID!
+    userAnswer: String!
+}
+
+type Feedback {
+    _id: ID!
+    userFeedback: String!
 }
 
 type Auth {
@@ -17,14 +33,22 @@ type Auth {
   }
 
 type Query {
-    questions: [Question]
-    question(_id: ID!): Question
-    allUsers: [User]
-    findUserById(id: ID!): User
+    questions: [Question!]
+    question(_id: ID!): Question!
+    answers: [Answer!]
+    answer: Answer!
+    allFeedback: [Feedback!]
+    feedback(_id: ID!): Feedback!
+    allUsers: [User!]
+    findUserById(id: ID!): User!
+    industries: [Industry!]
+    
 }
 
 type Mutation {
-    addQuestion: Question
+    addQuestion: Question!
+    addAnswer(userAnswer: String!): Answer!
+    getFeedback: Feedback!
 }
 `;
 
