@@ -1,14 +1,19 @@
-import db from '../config/connection'
-import Industry from '../models/Industry'
-import cleanDB from './cleanDB'
+const db = require('../config/connection');
+const { User } = require('../models');
+const userSeeds = require('./userSeeds.json');
+const cleanDB = require('./cleanDB');
 
-const industryData = require('./industryData.json')
+// const industryData = require('./industryData.json')
 
 db.once('open', async () => {
-  // await cleanDB('Industry');
+  try {
+    // await cleanDB('User', 'allUsers');
+    await User.deleteMany({ })
+    await User.create(userSeeds);
 
-  await Industry.insertMany(industryData);
-
-  console.log('Industries Seeded');
-  process.exit(0);
+    console.log('all done!');
+    process.exit(0);
+  } catch (err) {
+    throw err;
+  }
 });

@@ -1,0 +1,22 @@
+[
+    {
+        "name": "Glenn Quaqmire",
+        "email": "giggity@giggity.dev",
+        "password": "giggity"
+    },
+    {
+        "name": "Eric Cartman",
+        "email": "ihatekyle@fkyle.com",
+        "password": "screwyouguys"
+    },
+    {
+        "name": "Spongebob Squarepants",
+        "email": "goofygoober@rock.com",
+        "password": "krustykrab"
+    },
+    {
+        "name": "Bruce Wayne",
+        "email": "imcool@wayne.tech",
+        "password": "notbatman"
+    }
+]
