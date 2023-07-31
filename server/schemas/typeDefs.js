@@ -1,9 +1,9 @@
 const typeDefs = `
 type User {
     _id: ID
-    firstName: String
-    lastName: String
+    name: String
     email: String
+    password: String
 }
 
 type Industry {
@@ -28,7 +28,7 @@ type Feedback {
 }
 
 type Auth {
-    token: ID
+    token: ID!
     user: User
   }
 
@@ -49,6 +49,9 @@ type Mutation {
     addQuestion: Question!
     addAnswer(userAnswer: String!): Answer!
     getFeedback: Feedback!
+    
+    addUser(name: String!, email: String!, password: String!): Auth
+    login(email: String!, password: String!): Auth
 }
 `;
 

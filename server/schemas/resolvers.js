@@ -42,6 +42,29 @@ const resolvers = {
     },
   },
   Mutation: {
+    addUser: async (parent, {name, email, password}) => {
+      const user = await User.create({ name, email, password });
+      const token = signToken(user);
+
+      return { token, user }
+    },
+    login: async (parent, { email, password }) => {
+      const user = await User.findOne({ email });
+
+      if(!user){
+        throw AuthenticationError
+      }
+
+      const correctPw = await user.isCorrectPassword(password);
+
+      if(!correctPw){
+        throw AuthenticationError
+      }
+
+      const token = signToken(user);
+      return { token, user }
+
+    },
     addQuestion: async (parent, args) => {
       const prompt = await openAI.createChatCompletion({
         model: "gpt-3.5-turbo",
