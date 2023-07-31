@@ -31,7 +31,7 @@ const router = createBrowserRouter([
       }, {
         path: '/form',
         element: <Form />
-      }, {
+      },/* {
         path: '/interview',
         element: <Interview />
       }, /*{
