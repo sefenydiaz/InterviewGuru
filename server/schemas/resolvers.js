@@ -37,9 +37,6 @@ const resolvers = {
         console.log(error);
       }
     },
-    industries: async () => {
-      return await Industry.find();
-    },
   },
   Mutation: {
     addUser: async (parent, { name, email, password }) => {
