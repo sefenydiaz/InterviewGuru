@@ -6,15 +6,25 @@ const InterviewContext = createContext();
 export const useInterviewContext = () => useContext(InterviewContext)
 
 export const InterviewProvider = (props) => {
-  const [questionId, setQuestionId] = useState()
+
+  const [question, setQuestion] = useState()
 
   const updateId = (newId) => {
-    setQuestionId(newId) 
+    setQuestion({...question, id: newId})
     
   }
+
+  const updateQuestion = (newQuestion) => {
+    setQuestion({...question, text: newQuestion})
+  }
+
+  const [userResponse, setUserResponse] = useState()
+
+
+
   return (
     <InterviewContext.Provider 
-    value={{ questionId, updateId}}  >
+    value={{ updateQuestion, updateId, question, setQuestion, userResponse, setUserResponse}}  >
       {props}
       </InterviewContext.Provider>
   )

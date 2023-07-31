@@ -7,7 +7,7 @@ import Header  from './components/Header/index'
 import Footer from './components/Footer/index'
 import { setContext } from '@apollo/client/link/context';
 import { Outlet } from 'react-router-dom';
-import InterviewProvider from './utils/InterviewContext'
+import { InterviewProvider } from './utils/InterviewContext'
 
 
 // Construct our main GraphQL API endpoint
