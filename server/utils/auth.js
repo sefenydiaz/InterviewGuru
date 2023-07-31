@@ -1,7 +1,8 @@
 const { GraphQLError } = require('graphql');
 const jwt = require('jsonwebtoken');
+require('dotenv').config()
 
-const secret = 'mysecretssshhhhhhh';
+const secret = process.env.AUTH_KEY;
 const expiration = '2h';
 
 module.exports = {
@@ -30,8 +31,8 @@ module.exports = {
 
     return req;
   },
-  signToken: function ({ email, username, _id }) {
-    const payload = { email, username, _id };
+  signToken: function ({ email, password, _id }) {
+    const payload = { email, password, _id };
     return jwt.sign({ data: payload }, secret, { expiresIn: expiration });
   },
 };
