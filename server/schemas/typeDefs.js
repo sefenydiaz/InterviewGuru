@@ -1,6 +1,6 @@
 const typeDefs = `
 type User {
-    _id: ID
+    _id: ID!
     name: String
     email: String
     password: String
@@ -43,20 +43,14 @@ type Query {
     allUsers: [User!]
     findUserById(id: ID!): User!
     industries: [Industry!]
-    
 }
 
 type Mutation {
-    addQuestion: Question!
-
-    addAnswer(userAnswer: String!): Answer!
-    getFeedback: Feedback!
-    
+    addQuestion(industry: String!, role: String!, experience: String!): Question!
     addUser(name: String!, email: String!, password: String!): Auth
-    login(email: String!, password: String!): Aut
+    login(email: String!, password: String!): Auth
     addAnswer(_id: String!, answer: String!): Question!
     getFeedback(_id: String!): Question!
-
 }
 `;
 

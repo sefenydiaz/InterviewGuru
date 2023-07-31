@@ -42,30 +42,29 @@ const resolvers = {
     },
   },
   Mutation: {
-    addUser: async (parent, {name, email, password}) => {
+    addUser: async (parent, { name, email, password }) => {
       const user = await User.create({ name, email, password });
       const token = signToken(user);
 
-      return { token, user }
+      return { token, user };
     },
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
 
-      if(!user){
-        console.log("user not found")
-        throw AuthenticationError
+      if (!user) {
+        console.log("user not found");
+        throw AuthenticationError;
       }
 
       const correctPw = await user.isCorrectPassword(password);
 
-      if(!correctPw){
-        console.log('incorrect/no pw')
-        throw AuthenticationError
+      if (!correctPw) {
+        console.log("incorrect/no pw");
+        throw AuthenticationError;
       }
 
       const token = signToken(user);
-      return { token, user }
-
+      return { token, user };
     },
     addQuestion: async (parent, args) => {
       const prompt = await openAI.createChatCompletion({
@@ -73,12 +72,11 @@ const resolvers = {
         messages: [
           {
             role: "system",
-            content:
-              "You are an interviewer for a Data Analytics company for a Fortune 500 company.",
+            content: `You are an interviewer for a ${args.industry} company for a Fortune 500 company.`,
           },
           {
             role: "user",
-            content: "What is one question you have for me for a candidate?",
+            content: `What is one question you have for a ${args.role} candidate with ${args.experience}?`,
           },
         ],
       });
