@@ -68,21 +68,28 @@ const resolvers = {
 
       const questionData = prompt.data.choices[0].message.content;
 
-      const question = await Question.create({ question: questionData });
+      const question = await Question.create({
+        question: questionData,
+        industry: args.industry,
+      });
 
       return question;
     },
     addAnswer: async (parent, args) => {
-      const question = await Question.findByIdAndUpdate(args._id, {
-        answer: { userAnswer: args.answer },
-      });
+      const question = await Question.findByIdAndUpdate(
+        args._id,
+        {
+          answer: args.answer,
+        },
+        { new: true }
+      );
 
       return question;
     },
     getFeedback: async (parent, args) => {
       const question = await Question.findById(args._id);
 
-      const answer = question.answer.userAnswer;
+      const answer = question.answer;
 
       const prompt = await openAI.createChatCompletion({
         model: "gpt-3.5-turbo",
