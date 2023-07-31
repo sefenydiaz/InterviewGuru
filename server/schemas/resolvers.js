@@ -1,4 +1,4 @@
-const { User, Question, Answer, Feedback, Industry } = require("../models");
+const { User, Question } = require("../models");
 const { signToken, AuthenticationError, openAI } = require("../utils");
 
 const resolvers = {
@@ -8,18 +8,6 @@ const resolvers = {
     },
     question: async (parent, { _id }) => {
       return await Question.findById(_id);
-    },
-    answers: async () => {
-      return await Answer.find();
-    },
-    answer: async (parent, { _id }) => {
-      return await Answer.findById(_id);
-    },
-    allFeedback: async () => {
-      return await Feedback.find();
-    },
-    feedback: async (parent, { _id }) => {
-      return await Feedback.findById(_id);
     },
     allUsers: async () => {
       try {
@@ -116,7 +104,6 @@ const resolvers = {
         feedback: { userFeedback: feedbackData },
       });
     },
-    // addAnswerToQuestion: async (parent, { _id }, context) => {},
   },
 };
 
