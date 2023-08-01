@@ -72,10 +72,15 @@ const router = createBrowserRouter([
         element: <Interview />
       }, /*{
         path: '/stats',
+
         element: <Stats />*/
     ],
   },
 ]);
+
+ 
+])
+
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <RouterProvider router={router} />
