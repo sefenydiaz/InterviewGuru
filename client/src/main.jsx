@@ -3,8 +3,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App.jsx";
 import Home from "./pages/Home.jsx";
 
-//import Signup from './pages/Signup.jsx';
-//import Login from './pages/Login.jsx';
+import Signup from './pages/Signup.jsx';
+import Login from './pages/Login.jsx';
 import Form from "./pages/Form.jsx";
 import Questions from "./pages/Questions.jsx";
 import Feedback from "./pages/Feedback.jsx";
@@ -41,14 +41,14 @@ const router = createBrowserRouter([
         path: "/feedback",
         element: <Feedback />,
       },
-      //  {
-      //   path: '/login',
-      //   element: <Login />
-      // },
-      // {
-      //   path: '/signup',
-      //   element: <Signup />
-      // },
+        {
+        path: '/login',
+        element: <Login />
+      },
+      {
+        path: '/signup',
+        element: <Signup />
+      },
       {
         path: "/home",
         element: <Home />,
