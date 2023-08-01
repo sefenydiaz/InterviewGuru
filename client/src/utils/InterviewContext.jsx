@@ -25,7 +25,7 @@ export const InterviewProvider = (props) => {
   return (
     <InterviewContext.Provider 
     value={{ updateQuestion, updateId, question, setQuestion, userResponse, setUserResponse}}  >
-      {props}
+      {props.children}
       </InterviewContext.Provider>
   )
 }
