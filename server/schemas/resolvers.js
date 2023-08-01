@@ -71,6 +71,8 @@ const resolvers = {
       const question = await Question.create({
         question: questionData,
         industry: args.industry,
+        role: args.role,
+        experience: args.experience,
       });
 
       return question;
