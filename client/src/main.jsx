@@ -74,9 +74,9 @@ const router = createBrowserRouter([
       }, /*{
         path: '/stats',
         element: <Stats />
-
     ]
   }
+ 
 ])
 
 ReactDOM.createRoot(document.getElementById('root')).render(
