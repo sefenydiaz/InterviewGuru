@@ -68,28 +68,35 @@ const resolvers = {
 
       const questionData = prompt.data.choices[0].message.content;
 
-      const question = await Question.create({ question: questionData });
+      const question = await Question.create({
+        question: questionData,
+        industry: args.industry,
+      });
 
       return question;
     },
     addAnswer: async (parent, args) => {
-      const question = await Question.findByIdAndUpdate(args._id, {
-        answer: { userAnswer: args.answer },
-      });
+      const question = await Question.findByIdAndUpdate(
+        args._id,
+        {
+          answer: args.answer,
+        },
+        { new: true }
+      );
 
       return question;
     },
     getFeedback: async (parent, args) => {
       const question = await Question.findById(args._id);
-
-      const answer = question.answer.userAnswer;
+      const answer = question.answer;
+      const industry = question.industry;
 
       const prompt = await openAI.createChatCompletion({
         model: "gpt-3.5-turbo",
         messages: [
           {
             role: "system",
-            content: `You are an interviewer for a Data Analytics company for a Fortune 500 company. You just asked the following question: ${question}`,
+            content: `You are an interviewer for a ${industry} company for a Fortune 500 company. You just asked the following question: ${question}`,
           },
           {
             role: "user",
@@ -100,9 +107,13 @@ const resolvers = {
 
       const feedbackData = prompt.data.choices[0].message.content;
 
-      return await Question.findByIdAndUpdate(question._id, {
-        feedback: { userFeedback: feedbackData },
-      });
+      return await Question.findByIdAndUpdate(
+        question._id,
+        {
+          feedback: feedbackData,
+        },
+        { new: true }
+      );
     },
   },
 };
