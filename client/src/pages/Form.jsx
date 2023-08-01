@@ -61,9 +61,7 @@ const Form = () => {
 
     updateGlobalData(data.addQuestion);
 
-    
     navigate("/questions");
-   
   };
 
   return (
