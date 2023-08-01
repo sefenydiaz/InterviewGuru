@@ -7,6 +7,7 @@ import Home from "./pages/Home.jsx";
 //import Login from './pages/Login.jsx';
 import Form from "./pages/Form.jsx";
 import Questions from "./pages/Questions.jsx";
+import Feedback from "./pages/Feedback.jsx";
 
 import NotFound from "./pages/NotFound.jsx";
 
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
       {
         path: "/questions",
         element: <Questions />,
+      },
+      {
+        path: "/feedback",
+        element: <Feedback />,
       },
       //  {
       //   path: '/login',
