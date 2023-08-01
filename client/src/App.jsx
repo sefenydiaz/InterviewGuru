@@ -6,9 +6,8 @@ import Header  from './components/Header/index'
 import Footer from './components/Footer/index'
 import { setContext } from '@apollo/client/link/context';
 import { Outlet } from 'react-router-dom';
-import { InterviewProvider } from './utils/InterviewContext'
-import { GlobalDataProvider } from "./utils/GlobalDataContext";
-
+import { InterviewProvider } from './utils/InterviewContext';
+import { GlobalDataProvider } from './utils/GlobalDataContext'
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -44,7 +43,7 @@ function App() {
     <InterviewProvider>
       <ChakraProvider >
         <ApolloProvider client={client}>
-          <GlobalDataProvider>
+          <GlobalDataProvider >
           <div className="container">
             <Header />
 
