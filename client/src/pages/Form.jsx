@@ -11,6 +11,9 @@ import {
   Button,
 } from "@chakra-ui/react";
 
+import { useGlobalData } from "./GlobalDataContext";
+import { redirect } from "react-router-dom";
+
 const ADD_QUESTION = gql`
   mutation AddQuestion(
     $industry: String!
@@ -28,7 +31,7 @@ const ADD_QUESTION = gql`
 `;
 
 const Form = () => {
-  //store form input values
+  // store form input values
   const [formData, setFormData] = useState({
     industry: "",
     role: "",
@@ -42,6 +45,8 @@ const Form = () => {
     setFormData({ ...formData, [name]: value });
   };
 
+  const { updateGlobalData } = useGlobalData();
+
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     console.log("Form data submitted: ", formData);
@@ -53,7 +58,12 @@ const Form = () => {
       },
     });
     console.log(data);
+
+    updateGlobalData(data.addQuestion);
+
+    return redirect("/questions");
   };
+
   return (
     <div>
       <form onSubmit={handleFormSubmit}>
