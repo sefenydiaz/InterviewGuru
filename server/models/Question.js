@@ -11,6 +11,14 @@ const questionSchema = new Schema({
     type: String,
     required: true,
   },
+  role: {
+    type: String,
+    required: true,
+  },
+  experience: {
+    type: String,
+    required: true,
+  },
   answer: {
     type: String,
     required: false,
