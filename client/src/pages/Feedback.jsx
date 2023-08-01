@@ -5,7 +5,7 @@ const Feedback = () => {
     <h2>Feedback:</h2>
     <p>This is the feedback.</p>
     <Button>
-      <Link>Ask another question</Link>
+      <Link>Ask another question...</Link>
     </Button>
     <Button>
       <Link>Exit:</Link>

@@ -1,4 +1,4 @@
-const { User, Question, Answer, Feedback, Industry } = require("../models");
+const { User, Question } = require("../models");
 const { signToken, AuthenticationError, openAI } = require("../utils");
 
 const resolvers = {
@@ -8,18 +8,6 @@ const resolvers = {
     },
     question: async (parent, { _id }) => {
       return await Question.findById(_id);
-    },
-    answers: async () => {
-      return await Answer.find();
-    },
-    answer: async (parent, { _id }) => {
-      return await Answer.findById(_id);
-    },
-    allFeedback: async () => {
-      return await Feedback.find();
-    },
-    feedback: async (parent, { _id }) => {
-      return await Feedback.findById(_id);
     },
     allUsers: async () => {
       try {
@@ -37,35 +25,31 @@ const resolvers = {
         console.log(error);
       }
     },
-    industries: async () => {
-      return await Industry.find();
-    },
   },
   Mutation: {
-    addUser: async (parent, {name, email, password}) => {
+    addUser: async (parent, { name, email, password }) => {
       const user = await User.create({ name, email, password });
       const token = signToken(user);
 
-      return { token, user }
+      return { token, user };
     },
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
 
-      if(!user){
-        console.log("user not found")
-        throw AuthenticationError
+      if (!user) {
+        console.log("user not found");
+        throw AuthenticationError;
       }
 
       const correctPw = await user.isCorrectPassword(password);
 
-      if(!correctPw){
-        console.log('incorrect/no pw')
-        throw AuthenticationError
+      if (!correctPw) {
+        console.log("incorrect/no pw");
+        throw AuthenticationError;
       }
 
       const token = signToken(user);
-      return { token, user }
-
+      return { token, user };
     },
     addQuestion: async (parent, args) => {
       const prompt = await openAI.createChatCompletion({
@@ -73,12 +57,11 @@ const resolvers = {
         messages: [
           {
             role: "system",
-            content:
-              "You are an interviewer for a Data Analytics company for a Fortune 500 company.",
+            content: `You are an interviewer for a ${args.industry} company for a Fortune 500 company.`,
           },
           {
             role: "user",
-            content: "What is one question you have for me for a candidate?",
+            content: `What is one question you have for a ${args.role} candidate with ${args.experience}?`,
           },
         ],
       });
@@ -121,7 +104,6 @@ const resolvers = {
         feedback: { userFeedback: feedbackData },
       });
     },
-    // addAnswerToQuestion: async (parent, { _id }, context) => {},
   },
 };
 
