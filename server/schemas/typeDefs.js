@@ -10,6 +10,8 @@ type Question {
     _id: ID!
     question: String!
     industry: String!
+    role: String!
+    experience: String!
     answer: String
     feedback: String
 }
