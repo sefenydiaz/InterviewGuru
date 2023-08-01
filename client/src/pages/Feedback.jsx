@@ -18,7 +18,7 @@ mutation GetFeedback($id: String!) {
   }
 }`
 const Feedback = () => {
-  const [getFeedback] = useMutation(GET_FEEDBACK);
+  const [getFeedback, { data, loading, error}] = useMutation(GET_FEEDBACK);
   const navigate = useNavigate();
 
   const { updateGlobalData, globalData } = useGlobalData();
@@ -34,7 +34,11 @@ const showFeedback = async () => {
 
   useEffect(() => {
   showFeedback()
-  }, []); 
+  }, []);
+
+  if (loading) {
+    return <h2>Loading...</h2>
+  }
 
 
 return(
@@ -43,10 +47,10 @@ return(
     <h2>Feedback:</h2>
     <p>{globalData.feedback}</p>
     <Button>
-      <Link>Ask another question...</Link>
+      <Link to='/form'>Ask another question...</Link>
     </Button>
     <Button>
-      <Link>Exit:</Link>
+      <Link to='/home'>Exit:</Link>
     </Button>
   </div>
   )
