@@ -68,13 +68,13 @@ const router = createBrowserRouter([
       //   element: <Stats />
       // }
 
-      },/* {
-        path: '/interview',
-        element: <Interview />
-      }, /*{
-        path: '/stats',
-        element: <Stats />
-
+     // }, {
+      //  path: '/interview',
+       // element: <Interview />
+     // }, {
+      //  path: '/stats',
+      //  element: <Stats />
+        
     ]
   }
 ])

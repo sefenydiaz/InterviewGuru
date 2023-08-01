@@ -3,7 +3,7 @@
 // can only be accessed after log-in
 // need a button that jumps to form
 
-const Home = () => {
+
     
 
 import { Link } from 'react-router-dom';
