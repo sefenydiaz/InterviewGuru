@@ -11,8 +11,8 @@ import {
   Button,
 } from "@chakra-ui/react";
 
-import { useGlobalData } from "./GlobalDataContext";
-import { redirect } from "react-router-dom";
+import { useGlobalData } from "../utils/GlobalDataContext";
+import { useNavigate } from "react-router-dom";
 
 const ADD_QUESTION = gql`
   mutation AddQuestion(
@@ -39,7 +39,7 @@ const Form = () => {
   });
 
   const [addQuestion] = useMutation(ADD_QUESTION);
-
+  const navigate = useNavigate();
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
@@ -61,7 +61,9 @@ const Form = () => {
 
     updateGlobalData(data.addQuestion);
 
-    return redirect("/questions");
+    
+    navigate("/questions");
+   
   };
 
   return (
