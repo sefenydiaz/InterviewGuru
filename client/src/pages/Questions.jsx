@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useInterviewContext } from "../utils/InterviewContext";
 import { useMutation, gql } from "@apollo/client";
+import { useGlobalData } from "../utils/GlobalDataContext";
+import { useNavigate } from "react-router-dom";
 
 const ADD_ANSWER = gql`
   mutation AddAnswer($id: String!, $answer: String!) {
@@ -25,6 +27,9 @@ const Questions = () => {
     setUserResponse,
   } = useInterviewContext();
 
+  const { globalData, updateGlobalData } = useGlobalData();
+  const navigate = useNavigate();
+
   // Define state to track the user's input
   const [inputValue, setInputValue] = useState("");
 
@@ -44,20 +49,22 @@ const Questions = () => {
 
     const { data } = await addAnswer({
       variables: {
-        answer: inputValue.answer,
+        id: globalData._id,
+        answer: inputValue,
       },
     });
 
     console.log(data);
 
-    // Clear the input field after submission
-    setInputValue("");
+    updateGlobalData(data.addAnswer);
+
+    navigate("/feedback");
   };
 
   return (
     <div>
       <h2> Question:</h2>
-      <p>{question.text}</p>
+      <p>{globalData.question}</p>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
