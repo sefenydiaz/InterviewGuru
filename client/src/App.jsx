@@ -1,6 +1,5 @@
 import './App.css';
 
-
 import { ApolloClient, ApolloProvider, InMemoryCache, createHttpLink } from '@apollo/client';
 import { ChakraProvider } from '@chakra-ui/react'; 
 import Header  from './components/Header/index'
