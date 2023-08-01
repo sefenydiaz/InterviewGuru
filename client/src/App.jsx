@@ -7,6 +7,7 @@ import Footer from './components/Footer/index'
 import { setContext } from '@apollo/client/link/context';
 import { Outlet } from 'react-router-dom';
 import { InterviewProvider } from './utils/InterviewContext'
+import { GlobalDataProvider } from "./utils/GlobalDataContext";
 
 
 // Construct our main GraphQL API endpoint
@@ -43,6 +44,7 @@ function App() {
     <InterviewProvider>
       <ChakraProvider >
         <ApolloProvider client={client}>
+          <GlobalDataProvider>
           <div className="container">
             <Header />
 
@@ -54,6 +56,7 @@ function App() {
 
             <Footer />
           </div>
+          </GlobalDataProvider>
         </ApolloProvider>
       </ChakraProvider>
     </InterviewProvider>
