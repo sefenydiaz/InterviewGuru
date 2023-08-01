@@ -1,15 +1,20 @@
 import './App.css';
+
 import { ApolloClient, ApolloProvider, InMemoryCache, createHttpLink } from '@apollo/client';
 import { ChakraProvider } from '@chakra-ui/react'; 
 import Header  from './components/Header/index'
 import Footer from './components/Footer/index'
 import { setContext } from '@apollo/client/link/context';
 import { Outlet } from 'react-router-dom';
+import { InterviewProvider } from './utils/InterviewContext'
+
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
   uri: '/graphql',
 });
+
+
 
 // Construct request middleware that will attach the JWT token to every request as an `authorization` header
 const authLink = setContext((_, { headers }) => {
@@ -30,15 +35,20 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
+
+//put in user state to outlet using props
 function App() {
+  
   return (
+    <InterviewProvider>
       <ChakraProvider >
         <ApolloProvider client={client}>
           <div className="container">
             <Header />
 
             <div className="container">
-            <Outlet />
+            <Outlet 
+            />
             </div>
 
 
@@ -46,6 +56,7 @@ function App() {
           </div>
         </ApolloProvider>
       </ChakraProvider>
+    </InterviewProvider>
   );
 }
 

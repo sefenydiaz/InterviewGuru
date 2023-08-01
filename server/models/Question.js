@@ -1,16 +1,23 @@
 const mongoose = require("mongoose");
 
 const { Schema } = mongoose;
-const Answer = require("./Answer");
 
 const questionSchema = new Schema({
   question: {
     type: String,
     required: true,
   },
+  industry: {
+    type: String,
+    required: true,
+  },
   answer: {
-    type: Schema.Types.ObjectId,
-    ref: "Answer",
+    type: String,
+    required: false,
+  },
+  feedback: {
+    type: String,
+    required: false,
   },
 });
 
