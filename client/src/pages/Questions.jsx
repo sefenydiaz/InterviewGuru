@@ -4,6 +4,17 @@ import { useMutation, gql } from "@apollo/client";
 import { useGlobalData } from "../utils/GlobalDataContext";
 import { useNavigate } from "react-router-dom";
 
+import {
+  FormControl,
+  FormLabel,
+  FormErrorMessage,
+  FormHelperText,
+  Select,
+  Input,
+  Button,
+  Container,
+} from "@chakra-ui/react";
+
 const ADD_ANSWER = gql`
   mutation AddAnswer($id: String!, $answer: String!) {
     addAnswer(_id: $id, answer: $answer) {
@@ -66,15 +77,19 @@ const Questions = () => {
       <h2> Question:</h2>
       <p>{globalData.question}</p>
       <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          value={inputValue}
-          onChange={handleInputChange}
-          placeholder="Your answer"
-        />
-        <button type="submit">Submit</button>
+        <FormControl>
+          <FormLabel>Answer:</FormLabel>
+          <Input
+            placeholder="Write your answer here..."
+            onChange={handleInputChange}
+            name="answer"
+            value={inputValue}
+          />
+        </FormControl>
+        <Button type="submit" my={3}>
+          Submit
+        </Button>
       </form>
-      <p>Your Response: {userResponse} </p>
     </div>
   );
 };
