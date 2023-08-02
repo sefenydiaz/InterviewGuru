@@ -30,11 +30,8 @@ const Header = () => {
     <header id="header" className="bg-secondary text-light mb-4 py-3 flex-row align-center" >
       <div className="container flex-row justify-space-between-lg justify-center align-center">
         <div>
-          <Link className="text-light" to="/">
-            <img 
-            src={logo} 
-            alt='InterviewGuru'
-            style={imgStyle}/>
+          <Link className="text-light" to="/form">
+            <img src={logo} alt="InterviewGuru" style={imgStyle} />
           </Link>
           <p className="m-0" id="slogan">
             AI generated interview questions to land your next gig.
