@@ -1,7 +1,8 @@
 // INCLUDE NAVIGATION THAT INCLUDES: Stats, Home, Form(New Interview)
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
+import { Button, ButtonGroup } from "@chakra-ui/react";
 
-import Auth from '../../utils/auth';
+import Auth from "../../utils/auth";
 
 const Header = () => {
   const logout = (event) => {
@@ -15,26 +16,30 @@ const Header = () => {
           <Link className="text-light" to="/">
             <h1 className="m-0">InterviewGuru</h1>
           </Link>
-          <p className="m-0">AI generated interview questions to land your next gig.</p>
+          <p className="m-0">
+            AI generated interview questions to land your next gig.
+          </p>
         </div>
         <div>
           {Auth.loggedIn() ? (
             <>
               {/* <span>Hey there, {Auth.getProfile().data.username}!</span> */}
               <Link to="/login">
-              <button className="btn btn-lg btn-light m-2" onClick={logout}>
-                Logout
-              </button>
+                <button className="btn btn-lg btn-light m-2" onClick={logout}>
+                  Logout
+                </button>
               </Link>
             </>
           ) : (
             <>
-              <Link className="btn btn-lg btn-info m-2" to="/login">
-                Login
-              </Link>
-              <Link className="btn btn-lg btn-light m-2" to="/signup">
-                Signup
-              </Link>
+              <ButtonGroup variant="outline" spacing="6">
+                <Button colorScheme="6B818C">
+                  <Link to="/login">Login</Link>
+                </Button>
+                <Button colorScheme="6B818C">
+                  <Link to="/signup">Signup</Link>
+                </Button>
+              </ButtonGroup>
             </>
           )}
         </div>
