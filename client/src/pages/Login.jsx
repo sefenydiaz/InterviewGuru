@@ -54,7 +54,7 @@ function Login () {
       const { data } = await login({
         variables: { ...formState },
       });
-      
+
       Auth.login(data.login.token);
     } catch (error) {
       console.error(error);
@@ -103,6 +103,7 @@ function Login () {
                 <FormControl id="password">
                   <FormLabel>Password: </FormLabel>
                     <Input
+                    
                       placeholder="Password"
                       name="password"
                       type="password"
@@ -113,7 +114,7 @@ function Login () {
                 </FormControl>
                 {/* <Link to= "/home"> */}
                   <Button
-                    colorScheme="blue"
+                  
                     mt={4}
                     w="100%"
                     style={{ cursor: 'pointer' }}

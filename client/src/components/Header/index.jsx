@@ -1,9 +1,9 @@
 // INCLUDE NAVIGATION THAT INCLUDES: Stats, Home, Form(New Interview)
 
-import { Button, ButtonGroup } from "@chakra-ui/react";
+import { Button, ButtonGroup, chakra } from "@chakra-ui/react";
 import { Link } from 'react-router-dom';
 import logo from '../../assets/logo.png'
-
+import '../../assets/header.css'
 
 import Auth from "../../utils/auth";
 
@@ -13,6 +13,13 @@ import Auth from "../../utils/auth";
     borderRadius: '8px',
   }
 
+  const HoverColorButton = chakra(Button, {
+    baseStyle: {
+      transition: 'background-color 0.3s ease',
+      _hover: { backgroundColor: '#96D1AD' }, 
+    },
+  });
+
 
 const Header = () => {
   const logout = (event) => {
@@ -20,7 +27,7 @@ const Header = () => {
     Auth.logout();
   };
   return (
-    <header className="bg-primary text-light mb-4 py-3 flex-row align-center">
+    <header id="header" className="bg-secondary text-light mb-4 py-3 flex-row align-center" >
       <div className="container flex-row justify-space-between-lg justify-center align-center">
         <div>
           <Link className="text-light" to="/">
@@ -29,7 +36,7 @@ const Header = () => {
             alt='InterviewGuru'
             style={imgStyle}/>
           </Link>
-          <p className="m-0">
+          <p className="m-0" id="slogan">
             AI generated interview questions to land your next gig.
           </p>
         </div>
@@ -46,12 +53,12 @@ const Header = () => {
           ) : (
             <>
               <ButtonGroup variant="outline" spacing="6">
-                <Button colorScheme="6B818C">
+                <HoverColorButton colorScheme="6B818C">
                   <Link to="/login">Login</Link>
-                </Button>
-                <Button colorScheme="6B818C">
+                </HoverColorButton>
+                <HoverColorButton colorScheme="6B818C">
                   <Link to="/signup">Signup</Link>
-                </Button>
+                </HoverColorButton>
               </ButtonGroup>
             </>
           )}
