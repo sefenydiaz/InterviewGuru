@@ -38,7 +38,7 @@ const Form = () => {
     experience: "",
   });
 
-  const [addQuestion] = useMutation(ADD_QUESTION);
+  const [addQuestion, { data, loading, error }] = useMutation(ADD_QUESTION);
   const navigate = useNavigate();
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -63,6 +63,10 @@ const Form = () => {
 
     navigate("/questions");
   };
+
+  if (loading) {
+    return <h2>Loading...</h2>;
+  }
 
   return (
     <div>
