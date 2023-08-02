@@ -54,7 +54,7 @@ function Login () {
       const { data } = await login({
         variables: { ...formState },
       });
-
+      
       Auth.login(data.login.token);
     } catch (error) {
       console.error(error);
@@ -111,7 +111,7 @@ function Login () {
                       required
                     />
                 </FormControl>
-                <Link to= "/home">
+                {/* <Link to= "/home"> */}
                   <Button
                     colorScheme="blue"
                     mt={4}
@@ -121,7 +121,7 @@ function Login () {
                   >
                     Login!
                   </Button>
-                </Link>
+                {/* </Link> */}
               </form>
             )}
               </VStack>
