@@ -64,6 +64,8 @@ const Form = () => {
     navigate("/questions");
   };
 
+  const options = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "10+"];
+
   if (loading) {
     return <h2>Loading...</h2>;
   }
@@ -72,26 +74,16 @@ const Form = () => {
     <div>
       <form onSubmit={handleFormSubmit}>
         <FormControl id="industry" isRequired>
-          <FormLabel>Industry</FormLabel>
-          <Select
+          <FormLabel>Industry:</FormLabel>
+          <Input
             placeholder="Select Industry"
             onChange={handleInputChange}
             name="industry"
             value={formData.industry}
-          >
-            <option>Technology</option>
-            <option>Healthcare</option>
-            <option>Finance</option>
-            <option>Education</option>
-            <option>Retail</option>
-            <option>Manufactoring</option>
-            <option>Energy</option>
-            <option>Media & Entertainment</option>
-            <option>Government & Public Services</option>
-          </Select>
+          />
         </FormControl>
         <FormControl id="role" isRequired>
-          <FormLabel>Role</FormLabel>
+          <FormLabel>Role:</FormLabel>
           <Input
             placeholder="Role"
             onChange={handleInputChange}
@@ -100,19 +92,20 @@ const Form = () => {
           />
         </FormControl>
         <FormControl id="experience" isRequired>
-          <FormLabel>Experience</FormLabel>
+          <FormLabel>Years Experience:</FormLabel>
           <Select
             placeholder="Select Experience Level"
             onChange={handleInputChange}
             name="experience"
             value={formData.experience}
           >
-            <option>Internship</option>
-            <option>Entry Level</option>
-            <option>Associate</option>
-            <option>Senior</option>
-            <option>Director</option>
-            <option>Executive</option>
+            {options.map((option, index) => {
+              return (
+                <option key={index} value={option}>
+                  {option}
+                </option>
+              );
+            })}
           </Select>
         </FormControl>
         <Button type="submit" size="lg">
