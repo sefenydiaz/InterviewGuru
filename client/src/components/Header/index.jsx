@@ -7,6 +7,13 @@ import logo from '../../assets/logo.png'
 
 import Auth from "../../utils/auth";
 
+  const imgStyle = {
+    width: '450px',
+    height: 'auto',
+    borderRadius: '8px',
+  }
+
+
 const Header = () => {
   const logout = (event) => {
     event.preventDefault();
@@ -17,7 +24,10 @@ const Header = () => {
       <div className="container flex-row justify-space-between-lg justify-center align-center">
         <div>
           <Link className="text-light" to="/">
-            <img src={logo} alt=''/>
+            <img 
+            src={logo} 
+            alt='InterviewGuru'
+            style={imgStyle}/>
           </Link>
           <p className="m-0">
             AI generated interview questions to land your next gig.
