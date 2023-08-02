@@ -111,15 +111,17 @@ function Login () {
                       required
                     />
                 </FormControl>
-                <Button
-                  colorScheme="blue"
-                  mt={4}
-                  w="100%"
-                  style={{ cursor: 'pointer' }}
-                  type="submit"
-                >
-                  Login!
-                </Button>
+                <Link to= "/home">
+                  <Button
+                    colorScheme="blue"
+                    mt={4}
+                    w="100%"
+                    style={{ cursor: 'pointer' }}
+                    type="submit"
+                  >
+                    Login!
+                  </Button>
+                </Link>
               </form>
             )}
               </VStack>
