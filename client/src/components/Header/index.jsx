@@ -1,18 +1,16 @@
 // INCLUDE NAVIGATION THAT INCLUDES: Stats, Home, Form(New Interview)
 
 import { Button, ButtonGroup } from "@chakra-ui/react";
-import { Link } from 'react-router-dom';
-import logo from '../../assets/logo.png'
-
+import { Link } from "react-router-dom";
+import logo from "../../assets/logo.png";
 
 import Auth from "../../utils/auth";
 
-  const imgStyle = {
-    width: '450px',
-    height: 'auto',
-    borderRadius: '8px',
-  }
-
+const imgStyle = {
+  width: "450px",
+  height: "auto",
+  borderRadius: "8px",
+};
 
 const Header = () => {
   const logout = (event) => {
@@ -23,11 +21,8 @@ const Header = () => {
     <header className="bg-primary text-light mb-4 py-3 flex-row align-center">
       <div className="container flex-row justify-space-between-lg justify-center align-center">
         <div>
-          <Link className="text-light" to="/">
-            <img 
-            src={logo} 
-            alt='InterviewGuru'
-            style={imgStyle}/>
+          <Link className="text-light" to="/form">
+            <img src={logo} alt="InterviewGuru" style={imgStyle} />
           </Link>
           <p className="m-0">
             AI generated interview questions to land your next gig.
