@@ -57,11 +57,11 @@ const resolvers = {
         messages: [
           {
             role: "system",
-            content: `You are an interviewer for a ${args.industry} company for a Fortune 500 company.`,
+            content: `You are an interviewer for a ${args.industry} company.`,
           },
           {
             role: "user",
-            content: `What is one question you have for a ${args.role} candidate with ${args.experience}?`,
+            content: `What is one question you have for a ${args.role} candidate with ${args.experience} years experience?`,
           },
         ],
       });
@@ -98,11 +98,11 @@ const resolvers = {
         messages: [
           {
             role: "system",
-            content: `You are an interviewer for a ${industry} company for a Fortune 500 company. You just asked the following question: ${question}`,
+            content: `You are an interviewer for a ${industry} company. You just asked the following question: ${question}`,
           },
           {
             role: "user",
-            content: `Can you rate this answer on a scale of 1 to 5 and a feedback statement using the STAR method? Answer: ${answer}.`,
+            content: `Can you rate this answer on a scale of 1 to 5 and provide a feedback statement using the STAR method? Answer: ${answer}.`,
           },
         ],
       });
