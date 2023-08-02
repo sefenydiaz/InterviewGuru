@@ -22,7 +22,7 @@ function Home() {
             Welcome to InterviewGuru! Click below to begin.
           </Heading>
           <Link to="/form">
-            <Button colorScheme="blue" size="lg">
+            <Button colorScheme="gray" size="lg">
               Begin
             </Button>
           </Link>
