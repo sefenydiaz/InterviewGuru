@@ -1,5 +1,6 @@
 // INCLUDE NAVIGATION THAT INCLUDES: Stats, Home, Form(New Interview)
 import { Link } from 'react-router-dom';
+import logo from '../../assets/logo.png'
 
 import Auth from '../../utils/auth';
 
@@ -13,7 +14,7 @@ const Header = () => {
       <div className="container flex-row justify-space-between-lg justify-center align-center">
         <div>
           <Link className="text-light" to="/">
-            <h1 className="m-0">InterviewGuru</h1>
+            <img src={logo} alt=''/>
           </Link>
           <p className="m-0">AI generated interview questions to land your next gig.</p>
         </div>
