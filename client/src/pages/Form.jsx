@@ -9,6 +9,7 @@ import {
   Select,
   Input,
   Button,
+  Spinner,
 } from "@chakra-ui/react";
 
 import { useGlobalData } from "../utils/GlobalDataContext";
@@ -67,7 +68,15 @@ const Form = () => {
   const options = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "10+"];
 
   if (loading) {
-    return <h2>Loading...</h2>;
+    return (
+      <Spinner
+        thickness="4px"
+        speed="0.65s"
+        emptyColor="gray.200"
+        color="#96D1AD"
+        size="xl"
+      />
+    );
   }
 
   return (
@@ -94,7 +103,7 @@ const Form = () => {
         <FormControl id="experience" isRequired>
           <FormLabel>Years Experience:</FormLabel>
           <Select
-            placeholder="Select Experience Level"
+            placeholder="Select Experience Level..."
             onChange={handleInputChange}
             name="experience"
             value={formData.experience}
@@ -108,7 +117,7 @@ const Form = () => {
             })}
           </Select>
         </FormControl>
-        <Button type="submit" size="lg">
+        <Button type="submit" size="lg" my={3}>
           Submit
         </Button>
       </form>

@@ -1,9 +1,19 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useMutation, gql } from "@apollo/client";
-import { Button } from "@chakra-ui/react";
 import { useGlobalData } from "../utils/GlobalDataContext";
 import { useNavigate } from "react-router-dom";
+
+import {
+  FormControl,
+  FormLabel,
+  FormErrorMessage,
+  FormHelperText,
+  Select,
+  Input,
+  Button,
+  Spinner,
+} from "@chakra-ui/react";
 
 const GET_FEEDBACK = gql`
   mutation GetFeedback($id: String!) {
@@ -37,7 +47,15 @@ const Feedback = () => {
   }, []);
 
   if (loading) {
-    return <h2>Loading...</h2>;
+    return (
+      <Spinner
+        thickness="4px"
+        speed="0.65s"
+        emptyColor="gray.200"
+        color="#96D1AD"
+        size="xl"
+      />
+    );
   }
 
   return (
