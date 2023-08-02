@@ -22,6 +22,9 @@
   ## Usage
   Once on the site, sign up and click "Begin" and fill out the form fields for your desired Industry, Role, and Experience
 
+  ![Untitled_ Aug 2, 2023 12_56 PM](https://github.com/sefenydiaz/InterviewGuru/assets/113553249/67adc20c-a3db-4cbc-9128-5c8d071781d8)
+
+
   ## License 
   MIT
   (https://opensource.org/licenses/MIT)
