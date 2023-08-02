@@ -1,14 +1,29 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { useMutation } from '@apollo/client';
-import { ADD_USER } from '../utils/mutations';
+import { useMutation, gql } from '@apollo/client';
+// import { ADD_USER } from '../utils/mutations';
 
 import Auth from '../utils/auth';
 
+const ADD_USER = gql`
+mutation AddUser(
+  $name: String!
+  $email: String!
+  $password: String!
+  ) {
+    addUser(name: $name, email: $email, password: $password) {
+      token
+      user {
+        _id
+        email
+      }
+    }
+  }`;
+
 const Signup = () => {
   const [formState, setFormState] = useState({
-    username: '',
+    name: '',
     email: '',
     password: '',
   });
@@ -53,8 +68,8 @@ const Signup = () => {
               <form onSubmit={handleFormSubmit}>
                 <input
                   className="form-input"
-                  placeholder="Your username"
-                  name="username"
+                  placeholder="Your name"
+                  name="name"
                   type="text"
                   value={formState.name}
                   onChange={handleChange}

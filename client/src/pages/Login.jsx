@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useMutation } from '@apollo/client';
-import { LOGIN_USER } from '../utils/mutations';
+import { useMutation, gql } from '@apollo/client';
+// import { LOGIN_USER } from '../utils/mutations';
 import Auth from '../utils/auth';
 
 import {
@@ -14,6 +14,21 @@ import {
   Divider,
   VStack,
 } from '@chakra-ui/react';
+
+const LOGIN_USER = gql`
+mutation Login(
+  $email: String!
+  $password: String!
+  ) {
+    login(email: $email, password: $password) {
+      token
+      user {
+        _id
+        email
+      }
+    }
+  }
+  `;
 
 
 function Login () {
