@@ -45,10 +45,7 @@ const Feedback = () => {
       <h2>Feedback:</h2>
       <p>{globalData.feedback}</p>
       <Button>
-        <Link to="/form">Ask another question...</Link>
-      </Button>
-      <Button>
-        <Link to="/home">Exit:</Link>
+        <Link to="/home">Exit to Home</Link>
       </Button>
     </div>
   );
