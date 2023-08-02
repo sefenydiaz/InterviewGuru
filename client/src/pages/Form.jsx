@@ -115,7 +115,9 @@ const Form = () => {
             <option>Executive</option>
           </Select>
         </FormControl>
-        <Button type="submit">Submit</Button>
+        <Button type="submit" size="lg">
+          Submit
+        </Button>
       </form>
     </div>
   );
