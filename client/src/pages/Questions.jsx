@@ -75,7 +75,7 @@ const Questions = () => {
   return (
     <div>
       <h2> Question:</h2>
-      <p>{globalData.question}</p>
+      <p id="ai-prompt">{globalData.question}</p>
       <form onSubmit={handleSubmit}>
         <FormControl>
           <FormLabel>Answer:</FormLabel>
