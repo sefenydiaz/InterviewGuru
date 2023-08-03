@@ -1,11 +1,11 @@
 body {
-    font-family: "Josefin Sans", sans-serif;
-  }
-  
-  header {
-    background-color: gray;
-  }
+  font-family: "Josefin Sans", sans-serif;
+}
 
-  p {
-    color: #96D1AD
-  }
+header {
+  background-color: gray;
+}
+
+#slogan {
+  color: #96d1ad;
+}
