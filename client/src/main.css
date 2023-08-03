@@ -1,0 +1,19 @@
+ 
+/* FOOTER */
+#footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+#dino {
+    position: absolute;
+    bottom: 0;
+    width: 100%
+}
+
+/* QUESTIONS PAGE */
+#ai-prompt {
+    color: black;
+}
