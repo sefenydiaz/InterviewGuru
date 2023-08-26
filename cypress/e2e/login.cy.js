@@ -2,6 +2,7 @@ describe("Login page", () => {
   beforeEach(() => {
     cy.visit("/login");
   });
+
   it("Attempts login with correct email and incorrect password", () => {
     // checks that Login header exists and implicitly confirms we are on the login page
     cy.getDataTest("login-form-header").should("contain.text", "Login");
@@ -46,7 +47,6 @@ describe("Login page", () => {
     });
 
     cy.getDataTest("login-button").should("have.text", "Login!");
-
     cy.intercept("POST", "http://localhost:3000/login", {
       fixture: "successful-login.json",
     });
