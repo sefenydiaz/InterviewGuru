@@ -84,7 +84,7 @@ function Login() {
           </p>
         ) : (
           <form onSubmit={handleFormSubmit}>
-            <FormControl id="email">
+            <FormControl data-test="email-input" id="email">
               <FormLabel>Email: </FormLabel>
               <Input
                 placeholder="Email"
@@ -95,7 +95,7 @@ function Login() {
                 required
               />
             </FormControl>
-            <FormControl id="password">
+            <FormControl data-test="password-input" id="password">
               <FormLabel>Password: </FormLabel>
               <Input
                 placeholder="Password"
@@ -107,7 +107,13 @@ function Login() {
               />
             </FormControl>
             {/* <Link to= "/home"> */}
-            <Button mt={4} w="100%" style={{ cursor: "pointer" }} type="submit">
+            <Button
+              data-test="login-button"
+              mt={4}
+              w="100%"
+              style={{ cursor: "pointer" }}
+              type="submit"
+            >
               Login!
             </Button>
             {/* </Link> */}
