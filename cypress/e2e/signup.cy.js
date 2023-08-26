@@ -28,6 +28,9 @@ describe("Signup page", () => {
     cy.getDataTest("name-input").within(() => {
       cy.get("input").clear();
     });
+    cy.getDataTest("email-input").within(() => {
+      cy.get("input").type("jeff.goldblum@gmail.com");
+    });
 
     cy.getDataTest("submit-button").should("have.text", "Submit");
     cy.intercept("POST", "http://localhost:3000/login", {
