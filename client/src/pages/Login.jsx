@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useMutation, gql } from '@apollo/client';
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { useMutation, gql } from "@apollo/client";
 // import { LOGIN_USER } from '../utils/mutations';
-import Auth from '../utils/auth';
+import Auth from "../utils/auth";
 
 import {
   Box,
@@ -13,13 +13,10 @@ import {
   Heading,
   Divider,
   VStack,
-} from '@chakra-ui/react';
+} from "@chakra-ui/react";
 
 const LOGIN_USER = gql`
-mutation Login(
-  $email: String!
-  $password: String!
-  ) {
+  mutation Login($email: String!, $password: String!) {
     login(email: $email, password: $password) {
       token
       user {
@@ -28,11 +25,10 @@ mutation Login(
       }
     }
   }
-  `;
+`;
 
-
-function Login () {
-  const [formState, setFormState] = useState({ email: '', password: '' });
+function Login() {
+  const [formState, setFormState] = useState({ email: "", password: "" });
   //useMutation hook to use login mutation
   const [login, { data }] = useMutation(LOGIN_USER);
 
@@ -62,74 +58,64 @@ function Login () {
 
     // clear form values
     setFormState({
-      email: '',
-      password: '',
+      email: "",
+      password: "",
     });
   };
 
   return (
     <Box
-    maxW="md"
-    borderWidth="1px"
-    borderRadius="lg"
-    p={6}
-    m="auto"
-    mt={10}
-    boxShadow="md"
-  >
-    <VStack spacing={6}>
-      <Heading as="h1" size="lg">
-        Login
-      </Heading>
-      <Divider />
-            {data ? (
-              <p>
-                Success! You may now head{' '}
-                <Link to="/">back to the homepage.</Link>
-              </p>
-            ) : (
-              <form onSubmit={handleFormSubmit}>
-                <FormControl id="email">
-                  <FormLabel>Email: </FormLabel>
-                    <Input
-                      placeholder="Email"
-                      name="email"
-                      type="email"
-                      value={formState.email}
-                      onChange={handleChange}
-                      required
-                    />
-                </FormControl>
-                <FormControl id="password">
-                  <FormLabel>Password: </FormLabel>
-                    <Input
-                    
-                      placeholder="Password"
-                      name="password"
-                      type="password"
-                      value={formState.password}
-                      onChange={handleChange}
-                      required
-                    />
-                </FormControl>
-                {/* <Link to= "/home"> */}
-                  <Button
-                  
-                    mt={4}
-                    w="100%"
-                    style={{ cursor: 'pointer' }}
-                    type="submit"
-                  >
-                    Login!
-                  </Button>
-                {/* </Link> */}
-              </form>
-            )}
-              </VStack>
-              </Box>
-          )}
-
-          
-
+      maxW="md"
+      borderWidth="1px"
+      borderRadius="lg"
+      p={6}
+      m="auto"
+      mt={10}
+      boxShadow="md"
+    >
+      <VStack spacing={6}>
+        <Heading data-test="login-form-header" as="h1" size="lg">
+          Login
+        </Heading>
+        <Divider />
+        {data ? (
+          <p>
+            Success! You may now head <Link to="/">back to the homepage.</Link>
+          </p>
+        ) : (
+          <form onSubmit={handleFormSubmit}>
+            <FormControl id="email">
+              <FormLabel>Email: </FormLabel>
+              <Input
+                placeholder="Email"
+                name="email"
+                type="email"
+                value={formState.email}
+                onChange={handleChange}
+                required
+              />
+            </FormControl>
+            <FormControl id="password">
+              <FormLabel>Password: </FormLabel>
+              <Input
+                placeholder="Password"
+                name="password"
+                type="password"
+                value={formState.password}
+                onChange={handleChange}
+                required
+              />
+            </FormControl>
+            {/* <Link to= "/home"> */}
+            <Button mt={4} w="100%" style={{ cursor: "pointer" }} type="submit">
+              Login!
+            </Button>
+            {/* </Link> */}
+          </form>
+        )}
+      </VStack>
+    </Box>
+  );
+}
 
 export default Login;
