@@ -18,11 +18,11 @@ function Home() {
     <ChakraProvider>
       <Container maxW="md" centerContent mt={10}>
         <VStack spacing={6}>
-          <Heading as="h1" size="xl">
+          <Heading data-test="welcome-header" as="h1" size="xl">
             Welcome to InterviewGuru! Click below to begin.
           </Heading>
           <Link to="/form">
-            <Button colorScheme="gray" size="lg">
+            <Button data-test="begin-button" colorScheme="gray" size="lg">
               Begin
             </Button>
           </Link>

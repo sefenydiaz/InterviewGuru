@@ -1,10 +1,10 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useState } from "react";
+import { Link } from "react-router-dom";
 
-import { useMutation, gql } from '@apollo/client';
+import { useMutation, gql } from "@apollo/client";
 // import { ADD_USER } from '../utils/mutations';
 
-import Auth from '../utils/auth';
+import Auth from "../utils/auth";
 
 import {
   Box,
@@ -16,15 +16,10 @@ import {
   Divider,
   VStack,
   Text,
-} from '@chakra-ui/react';
-
+} from "@chakra-ui/react";
 
 const ADD_USER = gql`
-mutation AddUser(
-  $name: String!
-  $email: String!
-  $password: String!
-  ) {
+  mutation AddUser($name: String!, $email: String!, $password: String!) {
     addUser(name: $name, email: $email, password: $password) {
       token
       user {
@@ -32,13 +27,14 @@ mutation AddUser(
         email
       }
     }
-  }`;
+  }
+`;
 
 const Signup = () => {
   const [formState, setFormState] = useState({
-    name: '',
-    email: '',
-    password: '',
+    name: "",
+    email: "",
+    password: "",
   });
   const [addUser, { error, data }] = useMutation(ADD_USER);
 
@@ -77,7 +73,7 @@ const Signup = () => {
       boxShadow="md"
     >
       <VStack spacing={6}>
-        <Heading as="h1" size="lg">
+        <Heading data-test="signup-header" as="h1" size="lg">
           Sign Up
         </Heading>
         <Divider />
@@ -87,8 +83,8 @@ const Signup = () => {
           </Text>
         ) : (
           <form onSubmit={handleFormSubmit}>
-            <FormControl id="name">
-              <FormLabel>Name:</FormLabel>
+            <FormControl data-test="name-input" id="name">
+              <FormLabel>Name: </FormLabel>
               <Input
                 placeholder="Your name"
                 name="name"
@@ -98,8 +94,8 @@ const Signup = () => {
                 required
               />
             </FormControl>
-            <FormControl id="email">
-              <FormLabel>Email:</FormLabel>
+            <FormControl data-test="email-input" id="email">
+              <FormLabel>Email: </FormLabel>
               <Input
                 placeholder="Your email"
                 name="email"
@@ -109,8 +105,8 @@ const Signup = () => {
                 required
               />
             </FormControl>
-            <FormControl id="password">
-              <FormLabel>Password:</FormLabel>
+            <FormControl data-test="password-input" id="password">
+              <FormLabel>Password: </FormLabel>
               <Input
                 placeholder="******"
                 name="password"
@@ -121,7 +117,7 @@ const Signup = () => {
               />
             </FormControl>
 
-            <Button type="submit" w="100%" mt={4}>
+            <Button data-test="submit-button" type="submit" w="100%" mt={4}>
               Submit
             </Button>
           </form>
@@ -136,6 +132,5 @@ const Signup = () => {
     </Box>
   );
 };
-
 
 export default Signup;

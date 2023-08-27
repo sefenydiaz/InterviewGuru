@@ -70,6 +70,7 @@ const Form = () => {
   if (loading) {
     return (
       <Spinner
+        data-test="loading-spinner"
         thickness="4px"
         speed="0.65s"
         emptyColor="gray.200"
@@ -82,7 +83,7 @@ const Form = () => {
   return (
     <div>
       <form onSubmit={handleFormSubmit}>
-        <FormControl id="industry" isRequired>
+        <FormControl data-test="industry-input" id="industry" isRequired>
           <FormLabel>Industry:</FormLabel>
           <Input
             placeholder="Select Industry"
@@ -91,7 +92,7 @@ const Form = () => {
             value={formData.industry}
           />
         </FormControl>
-        <FormControl id="role" isRequired>
+        <FormControl data-test="role-input" id="role" isRequired>
           <FormLabel>Role:</FormLabel>
           <Input
             placeholder="Role"
@@ -100,7 +101,7 @@ const Form = () => {
             value={formData.role}
           />
         </FormControl>
-        <FormControl id="experience" isRequired>
+        <FormControl data-test="experience-dropdown" id="experience" isRequired>
           <FormLabel>Years Experience:</FormLabel>
           <Select
             placeholder="Select Experience Level..."
@@ -110,14 +111,18 @@ const Form = () => {
           >
             {options.map((option, index) => {
               return (
-                <option key={index} value={option}>
+                <option
+                  data-test={`experience-option-${index}`}
+                  key={index}
+                  value={option}
+                >
                   {option}
                 </option>
               );
             })}
           </Select>
         </FormControl>
-        <Button type="submit" size="lg" my={3}>
+        <Button data-test="submit-button" type="submit" size="lg" my={3}>
           Submit
         </Button>
       </form>
