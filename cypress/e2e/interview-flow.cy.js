@@ -47,11 +47,44 @@ describe("Job Interview flow", () => {
     });
 
     // submits the form
+    cy.intercept({
+      path: "http://localhost:3000/graphql",
+    }).as("addAnswer");
     cy.getDataTest("submit-button").should("have.text", "Submit");
     cy.getDataTest("submit-button").click();
     cy.getDataTest("loading-spinner").should("be.visible");
-    cy.wait(3000);
+    cy.wait("@addAnswer");
 
+    // tests the question page
     cy.location("pathname").should("equal", "/questions");
+    cy.getDataTest("question-header").should("have.text", "Question:");
+    cy.getDataTest("question-data").should("be.visible");
+
+    // types and submits an answer
+    cy.getDataTest("answer-form").within(() => {
+      cy.get("label").should("have.text", "Answer:");
+      cy.get("input").type(
+        "I was testing an app that makes an asynchronos API call on the backend of the stack. Due to an indefinite loading time based on the asychronous API, my test kept failing if the call was not completed by the time the next test ran. In order to avoid this, I used a wait() command and experimented with the approximate time it took for the response. After the test ran without failure and I was able to move on to testing other features."
+      );
+    });
+    cy.getDataTest("submit-button").should("have.text", "Submit");
+    cy.getDataTest("submit-button").click();
+
+    // tests that feedback is provided after the answer is submitted
+    cy.location("pathname").should("equal", "/feedback");
+    cy.getDataTest("loading-spinner").should("be.visible");
+    cy.wait(30000);
+    cy.getDataTest("feedback-header").should("have.text", "Feedback:");
+    cy.getDataTest("feedback-data").should("be.visible");
+    cy.getDataTest("submit-button").should("have.text", "Exit to Home");
+    cy.getDataTest("submit-button").within(() => {
+      cy.get("a").click();
+    });
+
+    //   // tests the logout functionality
+    //   cy.location("pathname").should("equal", "/home");
+    //   cy.getDataTest("logout-button").should("have.text", "Logout");
+    //   cy.getDataTest("logout-button").click();
+    //   cy.location("pathname").should("equal", "/login");
   });
 });

@@ -74,10 +74,12 @@ const Questions = () => {
 
   return (
     <div>
-      <h2> Question:</h2>
-      <p id="ai-prompt">{globalData.question}</p>
+      <h2 data-test="question-header">Question:</h2>
+      <p data-test="question-data" id="ai-prompt">
+        {globalData.question}
+      </p>
       <form onSubmit={handleSubmit}>
-        <FormControl>
+        <FormControl data-test="answer-form">
           <FormLabel>Answer:</FormLabel>
           <Input
             placeholder="Write your answer here..."
@@ -86,7 +88,7 @@ const Questions = () => {
             value={inputValue}
           />
         </FormControl>
-        <Button type="submit" my={3}>
+        <Button data-test="submit-button" type="submit" my={3}>
           Submit
         </Button>
       </form>

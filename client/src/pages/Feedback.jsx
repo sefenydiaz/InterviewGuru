@@ -49,6 +49,7 @@ const Feedback = () => {
   if (loading) {
     return (
       <Spinner
+        data-test="loading-spinner"
         thickness="4px"
         speed="0.65s"
         emptyColor="gray.200"
@@ -60,9 +61,9 @@ const Feedback = () => {
 
   return (
     <div>
-      <h2>Feedback:</h2>
-      <p>{globalData.feedback}</p>
-      <Button>
+      <h2 data-test="feedback-header">Feedback:</h2>
+      <p data-test="feedback-data">{globalData.feedback}</p>
+      <Button data-test="submit-button">
         <Link to="/home">Exit to Home</Link>
       </Button>
     </div>
