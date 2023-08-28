@@ -1,0 +1,13 @@
+{
+    "data": {
+        "addAnswer": {
+            "_id": "64eb8cb20ca5667241c853b9",
+            "question": "Describe a situation where you encountered a complex automation challenge and how you approached solving it.",
+            "answer": "I was testing an app that makes an asynchronos API call on the backend of the stack. Due to an indefinite loading time based on the asychronous API call, my test kept failing when the call was not completed by the time the next test ran. In order to avoid this, I used a wait() command and passed in an argument that instructed the wait command to finish executing when the API response was intercepted. After the test ran without failure and I was able to move on to testing other features.",
+            "industry": "Software Quality Assurance",
+            "role": "QA Automation Engineer",
+            "experience": "1",
+            "__typename": "Question"
+        }
+    }
+}

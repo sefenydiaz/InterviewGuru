@@ -1,0 +1,12 @@
+{
+    "data": {
+        "addQuestion": {
+            "_id": "64eb8cb20ca5667241c853b9",
+            "question": "Describe a situation where you encountered a complex automation challenge and how you approached solving it.",
+            "industry": "Software Quality Assurance",
+            "role": "QA Automation Engineer",
+            "experience": "1",
+            "__typename": "Question"
+        }
+    }
+}
