@@ -25,5 +25,5 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
 Cypress.Commands.add("getDataTest", (dataTestSelector) => {
-  return cy.get(`[data-test="${dataTestSelector}"]`);
-});
+    return cy.get(`[data-test=${dataTestSelector}`)
+})
