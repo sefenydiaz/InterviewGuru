@@ -29,6 +29,29 @@ const LOGIN_USER = gql`
 
 function Login() {
   const [formState, setFormState] = useState({ email: "", password: "" });
+  const [emailMessage, setEmailMessage] = useState("")
+  const [passwordMessage, setPasswordMessage] = useState("")
+
+  const emailValidation = () => {
+    const regEx = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+    Login
+    if(!regEx.test(formState.email || formState.email === "")) {
+      setEmailMessage("*These are required fields. Please enter a valid email.")
+    } else {
+      setEmailMessage("")
+    }
+  }
+
+  const passwordValidation = () => {
+    const regEx = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.[\W]).{8,}$/
+
+    if(!regEx.test(formState.password || formState.password === "")) {
+      setPasswordMessage("*This is a required field. Please enter a valid password.")
+    } else {
+      setPasswordMessage("")
+    }
+  }
+
   //useMutation hook to use login mutation
   const [login, { data }] = useMutation(LOGIN_USER);
 
@@ -40,6 +63,9 @@ function Login() {
       ...formState,
       [name]: value,
     });
+
+    emailValidation(event.target.value)
+    passwordValidation(event.target.value)
   };
 
   // submit form
@@ -94,6 +120,7 @@ function Login() {
                 onChange={handleChange}
                 required
               />
+              <p>{emailMessage}</p>
             </FormControl>
             <FormControl data-test="password-input" id="password">
               <FormLabel>Password: </FormLabel>
@@ -105,8 +132,8 @@ function Login() {
                 onChange={handleChange}
                 required
               />
+              <p>{passwordMessage}</p>
             </FormControl>
-            {/* <Link to= "/home"> */}
             <Button
               data-test="login-button"
               mt={4}
