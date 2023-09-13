@@ -30,13 +30,13 @@ const LOGIN_USER = gql`
 function Login() {
   const [formState, setFormState] = useState({ email: "", password: "" });
   const [emailMessage, setEmailMessage] = useState("")
-  const [passwordMessage, setPasswordMessage] =useState("")
+  const [passwordMessage, setPasswordMessage] = useState("")
 
   const emailValidation = () => {
     const regEx = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
-    
+    Login
     if(!regEx.test(formState.email || formState.email === "")) {
-      setEmailMessage("*This is a required field. Please enter a valid email.")
+      setEmailMessage("*These are required fields. Please enter a valid email.")
     } else {
       setEmailMessage("")
     }
@@ -64,7 +64,8 @@ function Login() {
       [name]: value,
     });
 
-    
+    emailValidation(event.target.value)
+    passwordValidation(event.target.value)
   };
 
   // submit form
@@ -86,8 +87,6 @@ function Login() {
       email: "",
       password: "",
     });
-    emailValidation(event.target.value)
-    passwordValidation(event.target.value)
   };
 
   return (
