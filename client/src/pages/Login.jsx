@@ -30,6 +30,7 @@ const LOGIN_USER = gql`
 function Login() {
   const [formState, setFormState] = useState({ email: "", password: "" });
   const [emailMessage, setEmailMessage] = useState("")
+  const [passwordMessage, setPasswordMessage] =useState("")
 
   const emailValidation = () => {
     const regEx = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
@@ -42,7 +43,13 @@ function Login() {
   }
 
   const passwordValidation = () => {
-    const 
+    const regEx = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.[\W]).{8,}$/
+
+    if(!regEx.test(formState.password || formState.password === "")) {
+      setPasswordMessage("*This is a required field. Please enter a valid password.")
+    } else {
+      setPasswordMessage("")
+    }
   }
 
   //useMutation hook to use login mutation
@@ -57,7 +64,7 @@ function Login() {
       [name]: value,
     });
 
-    emailValidation(event.target.value)
+    
   };
 
   // submit form
@@ -79,6 +86,8 @@ function Login() {
       email: "",
       password: "",
     });
+    emailValidation(event.target.value)
+    passwordValidation(event.target.value)
   };
 
   return (
@@ -124,8 +133,8 @@ function Login() {
                 onChange={handleChange}
                 required
               />
+              <p>{passwordMessage}</p>
             </FormControl>
-            {/* <Link to= "/home"> */}
             <Button
               data-test="login-button"
               mt={4}
