@@ -19,7 +19,7 @@ Welcome to InterviewGuru, the AI-generated interviewer to land your next gig! Us
 
 ## Installation
 
-No install required! Just click on our link:
+No install required! Just click on our link: https://interview-guru-1fbcc0943ad0.herokuapp.com/ 
 
 ## Usage
 
