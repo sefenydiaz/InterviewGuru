@@ -41,6 +41,10 @@ function Login() {
     }
   }
 
+  const passwordValidation = () => {
+    const 
+  }
+
   //useMutation hook to use login mutation
   const [login, { data }] = useMutation(LOGIN_USER);
 
