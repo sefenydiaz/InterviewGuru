@@ -33,6 +33,11 @@ const resolvers = {
 
       return { token, user };
     },
+    deleteUser: async (parent, { _id }) => {
+      const deletedUser = await User.findByIdAndRemove(_id);
+
+      return deletedUser;
+    },
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
 
