@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 import { useMutation, gql } from "@apollo/client";
-// import { ADD_USER } from '../utils/mutations';
 
 import Auth from "../utils/auth";
 
@@ -37,6 +36,41 @@ const Signup = () => {
     password: "",
   });
   const [addUser, { error, data }] = useMutation(ADD_USER);
+  const [nameMessage, setNameMessage] = useState("");
+  const [emailMessage, setEmailMessage] = useState("");
+  const [passwordMessage, setPasswordMessage] = useState("");
+
+  const nameValidation = () => {
+    const regEx = /^[a-zA-Z]+ [a-zA-Z]+$/;
+    if (!regEx.test(formState.name) || formState.name === "") {
+      setNameMessage(
+        "*This is a required field. Please enter first and last name."
+      );
+    } else {
+      setNameMessage("");
+    }
+  };
+
+  const emailValidation = () => {
+    const regEx = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+    if (!regEx.test(formState.email) || formState.email === "") {
+      setEmailMessage("*This is a required field. Please enter a vaild email.");
+    } else {
+      setEmailMessage("");
+    }
+  };
+
+  const passwordValidation = () => {
+    const regex =
+      /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
+    if (!regex.test(formState.password) || formState.password === "") {
+      setPasswordMessage(
+        "*This is a required field. Please meet the following password requirements: A minimum of 8 characters. At least one uppercase letter. At least one lower case letter. At least one numerical character. At least one special character."
+      );
+    } else {
+      setPasswordMessage("");
+    }
+  };
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -45,6 +79,10 @@ const Signup = () => {
       ...formState,
       [name]: value,
     });
+
+    nameValidation(event.target.value);
+    emailValidation(event.target.value);
+    passwordValidation(event.target.value);
   };
 
   const handleFormSubmit = async (event) => {
@@ -93,6 +131,9 @@ const Signup = () => {
                 onChange={handleChange}
                 required
               />
+              <Text color="#FF0000" fontSize="md">
+                {nameMessage}
+              </Text>
             </FormControl>
             <FormControl data-test="email-input" id="email">
               <FormLabel>Email: </FormLabel>
@@ -105,6 +146,9 @@ const Signup = () => {
                 required
               />
             </FormControl>
+            <Text color="#FF0000" fontSize="md">
+              {emailMessage}
+            </Text>
             <FormControl data-test="password-input" id="password">
               <FormLabel>Password: </FormLabel>
               <Input
@@ -115,8 +159,10 @@ const Signup = () => {
                 onChange={handleChange}
                 required
               />
+              <Text color="#FF0000" fontSize="md">
+                {passwordMessage}
+              </Text>
             </FormControl>
-
             <Button data-test="submit-button" type="submit" w="100%" mt={4}>
               Submit
             </Button>
