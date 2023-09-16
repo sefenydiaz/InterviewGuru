@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 import { useMutation, gql } from "@apollo/client";
-// import { ADD_USER } from '../utils/mutations';
 
 import Auth from "../utils/auth";
 
@@ -37,6 +36,18 @@ const Signup = () => {
     password: "",
   });
   const [addUser, { error, data }] = useMutation(ADD_USER);
+  const [nameMessage, setNameMessage] = useState("");
+
+  const nameValidation = () => {
+    const regEx = /^[a-zA-Z]+ [a-zA-Z]+$/;
+    if (!regEx.test(formState.name) || formState.name === "") {
+      setNameMessage(
+        "*This is a required field. Please enter first and last name."
+      );
+    } else {
+      setNameMessage("");
+    }
+  };
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -45,6 +56,8 @@ const Signup = () => {
       ...formState,
       [name]: value,
     });
+
+    nameValidation(event.target.value);
   };
 
   const handleFormSubmit = async (event) => {
@@ -93,6 +106,7 @@ const Signup = () => {
                 onChange={handleChange}
                 required
               />
+              <p>{nameMessage}</p>
             </FormControl>
             <FormControl data-test="email-input" id="email">
               <FormLabel>Email: </FormLabel>
