@@ -106,7 +106,9 @@ const Signup = () => {
                 onChange={handleChange}
                 required
               />
-              <p>{nameMessage}</p>
+              <Text color="#FF0000" fontSize="md">
+                {nameMessage}
+              </Text>
             </FormControl>
             <FormControl data-test="email-input" id="email">
               <FormLabel>Email: </FormLabel>
