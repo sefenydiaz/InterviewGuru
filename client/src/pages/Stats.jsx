@@ -2,8 +2,10 @@
 // access past interviews + feedback
 // INCLUDE IN NAVIGATION
 
-const Stats = () => {
+import { Button } from "@chakra-ui/react";
 
-}
+const Stats = () => {
+  return <Button colorScheme="red">Delete Account</Button>;
+};
 
 export default Stats;
