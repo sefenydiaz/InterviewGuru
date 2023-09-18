@@ -2,6 +2,7 @@
 
 import { Button, ButtonGroup, chakra } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import "../../assets/header.css";
 
@@ -25,6 +26,9 @@ const Header = () => {
     event.preventDefault();
     Auth.logout();
   };
+
+  const navigate = useNavigate();
+
   return (
     <header
       id="header"
@@ -42,14 +46,22 @@ const Header = () => {
         <div>
           {Auth.loggedIn() ? (
             <>
+              <Link to="/stats">
+                <Button
+                  data-test="logout-button"
+                  className="btn btn-lg btn-light m-2"
+                >
+                  Profile
+                </Button>
+              </Link>
               <Link to="/login">
-                <button
+                <Button
                   data-test="logout-button"
                   className="btn btn-lg btn-light m-2"
                   onClick={logout}
                 >
                   Logout
-                </button>
+                </Button>
               </Link>
             </>
           ) : (
