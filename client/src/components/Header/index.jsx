@@ -42,7 +42,6 @@ const Header = () => {
         <div>
           {Auth.loggedIn() ? (
             <>
-              {/* <span>Hey there, {Auth.getProfile().data.username}!</span> */}
               <Link to="/login">
                 <button
                   data-test="logout-button"

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useMutation, gql } from "@apollo/client";
-// import { LOGIN_USER } from '../utils/mutations';
+import { useGlobalData } from "../utils/GlobalDataContext";
 import Auth from "../utils/auth";
 
 import {
@@ -31,6 +31,7 @@ function Login() {
   const [formState, setFormState] = useState({ email: "", password: "" });
   const [emailMessage, setEmailMessage] = useState("");
   const [passwordMessage, setPasswordMessage] = useState("");
+  const { globalData, updateGlobalData } = useGlobalData();
 
   const emailValidation = () => {
     const regEx = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
@@ -74,13 +75,14 @@ function Login() {
   // submit form
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log(formState);
     try {
       const { data } = await login({
         variables: { ...formState },
       });
 
       Auth.login(data.login.token);
+      updateGlobalData(data.login);
+      console.log(globalData);
     } catch (error) {
       console.error(error);
     }
@@ -146,7 +148,6 @@ function Login() {
             >
               Login!
             </Button>
-            {/* </Link> */}
           </form>
         )}
       </VStack>
