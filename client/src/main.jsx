@@ -1,21 +1,18 @@
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import "../../client/src/main.css";
 import App from "./App.jsx";
 import Home from "./pages/Home.jsx";
-import "../../client/src/main.css";
-import Signup from './pages/Signup.jsx';
-import Login from './pages/Login.jsx';
+import Signup from "./pages/Signup.jsx";
+import Login from "./pages/Login.jsx";
 import Form from "./pages/Form.jsx";
 import Questions from "./pages/Questions.jsx";
 import Feedback from "./pages/Feedback.jsx";
+import Stats from "./pages/Stats.jsx";
 
 import NotFound from "./pages/NotFound.jsx";
 
 import Welcome from "./pages/Welcome.jsx";
-
-// import Welcome from './pages/Welcome.jsx';
-
-// implement useContext
 
 const router = createBrowserRouter([
   {
@@ -41,13 +38,13 @@ const router = createBrowserRouter([
         path: "/feedback",
         element: <Feedback />,
       },
-        {
-        path: '/login',
-        element: <Login />
+      {
+        path: "/login",
+        element: <Login />,
       },
       {
-        path: '/signup',
-        element: <Signup />
+        path: "/signup",
+        element: <Signup />,
       },
       {
         path: "/home",
@@ -56,6 +53,10 @@ const router = createBrowserRouter([
       {
         path: "/form",
         element: <Form />,
+      },
+      {
+        path: "/stats",
+        element: <Stats />,
       },
     ],
   },
