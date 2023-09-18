@@ -3,6 +3,8 @@
 // INCLUDE IN NAVIGATION
 import { useState } from "react";
 import { useMutation, gql } from "@apollo/client";
+import Auth from "../utils/auth";
+import { useNavigate } from "react-router-dom";
 
 import {
   Modal,
@@ -28,7 +30,21 @@ const DELETE_USER = gql`
 `;
 
 const Stats = () => {
+  const [deleteUser, { data, loading, error }] = useMutation(DELETE_USER);
+  const navigate = useNavigate();
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const deleteAccount = async () => {
+    const userId = Auth.getProfile().data._id;
+
+    const { data } = await deleteUser({
+      variables: {
+        id: userId,
+      },
+    });
+
+    Auth.logout();
+  };
 
   return (
     <>
@@ -43,13 +59,15 @@ const Stats = () => {
           <ModalCloseButton />
           <ModalBody>
             This is a permanent action. Are you sure you want to permanently
-            delete your account ?
+            delete your account?
           </ModalBody>
           <ModalFooter>
             <Button onClick={onClose} mr={3}>
               Cancel
             </Button>
-            <Button colorScheme="red">Delete Account</Button>
+            <Button onClick={deleteAccount} colorScheme="red">
+              Delete Account
+            </Button>
           </ModalFooter>
         </ModalContent>
       </Modal>
