@@ -28,5 +28,17 @@ describe("Sign Up flow", () => {
       cy.get("input").type("@gmail.com");
       cy.get("p").should("have.text", "");
     });
+
+    // Tests the password input field
+    cy.getDataTest("password-input").within(() => {
+      cy.get("label").should("have.text", "Password: ");
+      cy.get("input").type("Bobsaget");
+      cy.get("p").should(
+        "have.text",
+        "*This is a required field. Please meet the following password requirements: A minimum of 8 characters. At least one uppercase letter. At least one lower case letter. At least one numerical character. At least one special character."
+      );
+      cy.get("input").type("12345!");
+      //   cy.get("p").should("have.text", "");
+    });
   });
 });
