@@ -40,5 +40,10 @@ describe("Sign Up flow", () => {
       cy.get("input").type("12345!");
       //   cy.get("p").should("have.text", "");
     });
+
+    // Submit button
+    cy.getDataTest("submit-button").should("have.text", "Submit");
+    cy.getDataTest("submit-button").click();
+    cy.location("pathname").should("eq", "/home");
   });
 });
