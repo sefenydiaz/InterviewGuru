@@ -52,7 +52,12 @@ const Stats = () => {
         Delete Account
       </Button>
 
-      <Modal isOpen={isOpen} onClose={onClose} isCentered>
+      <Modal
+        data-test="delete-account-modal"
+        isOpen={isOpen}
+        onClose={onClose}
+        isCentered
+      >
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>Delete Account</ModalHeader>

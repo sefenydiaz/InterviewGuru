@@ -49,7 +49,7 @@ const Header = () => {
               <ButtonGroup gap={4}>
                 <Link to="/stats">
                   <Button
-                    data-test="logout-button"
+                    data-test="profile-button"
                     className="btn btn-lg btn-light m-2"
                   >
                     Profile

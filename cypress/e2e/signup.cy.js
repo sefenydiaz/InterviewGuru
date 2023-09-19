@@ -45,5 +45,12 @@ describe("Sign Up flow", () => {
     cy.getDataTest("submit-button").should("have.text", "Submit");
     cy.getDataTest("submit-button").click();
     cy.location("pathname").should("eq", "/home");
+
+    // Tests delete account functionality
+    cy.getDataTest("profile-button").should("have.text", "Profile").click();
+    cy.location("pathname").should("eq", "/stats");
+    cy.getDataTest("delete-account-modal").should("not.exist");
+
+    // Tests the functionality of the delete account button
   });
 });
