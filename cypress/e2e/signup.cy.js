@@ -16,5 +16,17 @@ describe("Sign Up flow", () => {
       cy.get("input").type("Saget");
       cy.get("p").should("have.text", "");
     });
+
+    // Tests the email input field
+    cy.getDataTest("email-input").within(() => {
+      cy.get("label").should("have.text", "Email: ");
+      cy.get("input").type("bob.saget");
+      cy.get("p").should(
+        "have.text",
+        "*This is a required field. Please enter a vaild email."
+      );
+      cy.get("input").type("@gmail.com");
+      cy.get("p").should("have.text", "");
+    });
   });
 });
