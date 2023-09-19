@@ -52,5 +52,25 @@ describe("Sign Up flow", () => {
     cy.getDataTest("delete-account-modal").should("not.exist");
 
     // Tests the functionality of the delete account button
+    cy.getDataTest("modal-button")
+      .should("have.text", "Delete Account")
+      .click();
+    cy.getDataTest("delete-account-modal").should("exist");
+
+    // Tests functionality of the delete account modal
+    cy.getDataTest("modal-header").should("have.text", "Delete Account");
+    cy.getDataTest("modal-content").should(
+      "have.text",
+      "This is a permanent action. Are you sure you want to permanently delete your account?"
+    );
+    cy.getDataTest("close-button").click();
+    cy.getDataTest("delete-account-modal").should("not.exist");
+    cy.getDataTest("modal-button").click();
+    cy.getDataTest("delete-account-modal").should("exist");
+    cy.getDataTest("cancel-button").should("have.text", "Cancel").click();
+    cy.getDataTest("delete-account-button")
+      .should("have.text", "Delete Account")
+      .click();
+    cy.location("pathname").should("eq", "/login");
   });
 });
