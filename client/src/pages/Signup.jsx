@@ -131,7 +131,7 @@ const Signup = () => {
                 onChange={handleChange}
                 required
               />
-              <Text color="#FF0000" fontSize="md">
+              <Text data-test="name-alert" color="#FF0000" fontSize="md">
                 {nameMessage}
               </Text>
             </FormControl>
@@ -146,7 +146,7 @@ const Signup = () => {
                 required
               />
             </FormControl>
-            <Text color="#FF0000" fontSize="md">
+            <Text data-test="email-alert" color="#FF0000" fontSize="md">
               {emailMessage}
             </Text>
             <FormControl data-test="password-input" id="password">
