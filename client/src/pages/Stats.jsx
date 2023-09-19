@@ -48,24 +48,28 @@ const Stats = () => {
 
   return (
     <>
-      <Button onClick={onOpen} colorScheme="red">
+      <Button data-test="modal-button" onClick={onOpen} colorScheme="red">
         Delete Account
       </Button>
 
       <Modal isOpen={isOpen} onClose={onClose} isCentered>
         <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Delete Account</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
+        <ModalContent data-test="delete-account-modal">
+          <ModalHeader data-test="modal-header">Delete Account</ModalHeader>
+          <ModalCloseButton data-test="close-button" />
+          <ModalBody data-test="modal-content">
             This is a permanent action. Are you sure you want to permanently
             delete your account?
           </ModalBody>
           <ModalFooter>
-            <Button onClick={onClose} mr={3}>
+            <Button data-test="cancel-button" onClick={onClose} mr={3}>
               Cancel
             </Button>
-            <Button onClick={deleteAccount} colorScheme="red">
+            <Button
+              data-test="delete-account-button"
+              onClick={deleteAccount}
+              colorScheme="red"
+            >
               Delete Account
             </Button>
           </ModalFooter>

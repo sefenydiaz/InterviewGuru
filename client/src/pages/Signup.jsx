@@ -62,7 +62,7 @@ const Signup = () => {
 
   const passwordValidation = () => {
     const regex =
-      /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
+      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
     if (!regex.test(formState.password) || formState.password === "") {
       setPasswordMessage(
         "*This is a required field. Please meet the following password requirements: A minimum of 8 characters. At least one uppercase letter. At least one lower case letter. At least one numerical character. At least one special character."
@@ -131,7 +131,7 @@ const Signup = () => {
                 onChange={handleChange}
                 required
               />
-              <Text color="#FF0000" fontSize="md">
+              <Text data-test="name-alert" color="#FF0000" fontSize="md">
                 {nameMessage}
               </Text>
             </FormControl>
@@ -145,10 +145,10 @@ const Signup = () => {
                 onChange={handleChange}
                 required
               />
+              <Text color="#FF0000" fontSize="md">
+                {emailMessage}
+              </Text>
             </FormControl>
-            <Text color="#FF0000" fontSize="md">
-              {emailMessage}
-            </Text>
             <FormControl data-test="password-input" id="password">
               <FormLabel>Password: </FormLabel>
               <Input
