@@ -46,23 +46,25 @@ const Header = () => {
         <div>
           {Auth.loggedIn() ? (
             <>
-              <Link to="/stats">
-                <Button
-                  data-test="logout-button"
-                  className="btn btn-lg btn-light m-2"
-                >
-                  Profile
-                </Button>
-              </Link>
-              <Link to="/login">
-                <Button
-                  data-test="logout-button"
-                  className="btn btn-lg btn-light m-2"
-                  onClick={logout}
-                >
-                  Logout
-                </Button>
-              </Link>
+              <ButtonGroup gap={4}>
+                <Link to="/stats">
+                  <Button
+                    data-test="logout-button"
+                    className="btn btn-lg btn-light m-2"
+                  >
+                    Profile
+                  </Button>
+                </Link>
+                <Link to="/login">
+                  <Button
+                    data-test="logout-button"
+                    className="btn btn-lg btn-light m-2"
+                    onClick={logout}
+                  >
+                    Logout
+                  </Button>
+                </Link>
+              </ButtonGroup>
             </>
           ) : (
             <>
