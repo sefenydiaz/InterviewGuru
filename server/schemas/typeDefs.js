@@ -1,11 +1,4 @@
 const typeDefs = `
-type User {
-    _id: ID!
-    name: String
-    email: String
-    password: String
-}
-
 type Question {
     _id: ID!
     question: String!
@@ -15,6 +8,15 @@ type Question {
     answer: String
     feedback: String
 }
+
+type User {
+    _id: ID!
+    name: String
+    email: String
+    password: String
+    questions: [Question]
+}
+
 
 type Auth {
     token: ID!
