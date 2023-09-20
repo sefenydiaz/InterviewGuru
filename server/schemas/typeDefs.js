@@ -37,6 +37,7 @@ type Mutation {
     addUser(name: String!, email: String!, password: String!): Auth
     deleteUser(_id: String!): User
     login(email: String!, password: String!): Auth
+    addQuestionToUser(userId: String!, questionId: String!): User
 }
 `;
 
