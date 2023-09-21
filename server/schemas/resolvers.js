@@ -122,6 +122,13 @@ const resolvers = {
         { new: true }
       );
     },
+    addQuestionToUser: async (parent, { userId, questionId }) => {
+      return await User.findByIdAndUpdate(
+        { _id: userId },
+        { $push: { questions: questionId } },
+        { new: true }
+      ).populate("questions");
+    },
   },
 };
 
