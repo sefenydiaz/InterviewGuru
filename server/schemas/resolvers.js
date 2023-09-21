@@ -126,7 +126,7 @@ const resolvers = {
       return await User.findByIdAndUpdate(
         { _id: userId },
         { $push: { questions: questionId } },
-        { new: true, runValidators: true }
+        { new: true }
       ).populate("questions");
     },
   },
