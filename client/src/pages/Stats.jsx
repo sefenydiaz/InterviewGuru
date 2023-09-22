@@ -7,6 +7,7 @@ import Auth from "../utils/auth";
 import { useNavigate } from "react-router-dom";
 
 import {
+  Heading,
   Modal,
   ModalOverlay,
   ModalContent,
@@ -89,6 +90,7 @@ const Stats = () => {
 
   return (
     <>
+      <Heading>Previous Interview Questions:</Heading>
       {userQuestions.map((question, index) => {
         return (
           <Card my="5" key={index} value={question}>
