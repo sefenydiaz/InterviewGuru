@@ -54,7 +54,9 @@ const Stats = () => {
     data: dataQueries,
     loading: loadingQueries,
     error: errorQueries,
-  } = useQuery(GET_USER, { variables: { id: Auth.getProfile().data._id } });
+  } = useQuery(GET_USER, {
+    variables: { findUserByIdId: Auth.getProfile().data._id },
+  });
 
   console.log(dataQueries);
 
