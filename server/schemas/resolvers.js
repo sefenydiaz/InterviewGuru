@@ -19,7 +19,7 @@ const resolvers = {
     },
     findUserById: async (_, { id }) => {
       try {
-        const user = await User.findById(id).populate();
+        const user = await User.findById(id).populate("questions");
         return user;
       } catch (error) {
         console.log(error);
