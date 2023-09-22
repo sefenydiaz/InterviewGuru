@@ -20,6 +20,7 @@ import {
   CardHeader,
   CardBody,
   CardFooter,
+  Stack,
   StackDivider,
   Box,
   Text,
@@ -88,22 +89,29 @@ const Stats = () => {
     <>
       <Card>
         <CardBody>
-          <Box>
-            <Text>Question: This is where the question goes?</Text>
-            <Text>Answer: This is where the answer goes.</Text>
-            <Text>Feedback: This is where the feedback goes.</Text>
-          </Box>
-          <Box>
-            <Text>Industry: This is where the industry goes.</Text>
-            <Text>Role: This is where the role goes.</Text>
-            <Text>
-              Experience Level: This is where the experience level goes.
-            </Text>
-          </Box>
+          <Stack divider={<StackDivider />} spacing="4">
+            <Box>
+              <Text>Question: This is where the question goes?</Text>
+              <Text>Answer: This is where the answer goes.</Text>
+              <Text>Feedback: This is where the feedback goes.</Text>
+            </Box>
+            <Box>
+              <Text>Industry: This is where the industry goes.</Text>
+              <Text>Role: This is where the role goes.</Text>
+              <Text>
+                Experience Level: This is where the experience level goes.
+              </Text>
+            </Box>
+          </Stack>
         </CardBody>
       </Card>
 
-      <Button data-test="modal-button" onClick={onOpen} colorScheme="red">
+      <Button
+        data-test="modal-button"
+        mt={5}
+        onClick={onOpen}
+        colorScheme="red"
+      >
         Delete Account
       </Button>
 
