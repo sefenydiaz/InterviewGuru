@@ -69,6 +69,8 @@ const Stats = () => {
 
   console.log(dataQueries);
 
+  const userQuestions = dataQueries?.findUserById.questions || [];
+
   const [
     deleteUser,
     { data: dataMutations, loading: loadingMutations, error: errorMutations },
@@ -85,8 +87,6 @@ const Stats = () => {
   };
 
   const { isOpen, onOpen, onClose } = useDisclosure();
-
-  const userQuestions = dataQueries.findUserById.questions;
 
   return (
     <>
