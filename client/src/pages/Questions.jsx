@@ -3,6 +3,7 @@ import { useInterviewContext } from "../utils/InterviewContext";
 import { useMutation, gql } from "@apollo/client";
 import { useGlobalData } from "../utils/GlobalDataContext";
 import { useNavigate } from "react-router-dom";
+import Auth from "../utils/auth";
 
 import {
   FormControl,
@@ -15,15 +16,35 @@ import {
   Container,
 } from "@chakra-ui/react";
 
-const ADD_ANSWER = gql`
-  mutation AddAnswer($id: String!, $answer: String!) {
+const ADD_QUESTION_TO_USER = gql`
+  mutation AddAnswer(
+    $id: String!
+    $answer: String!
+    $userId: String!
+    $questionId: String!
+  ) {
     addAnswer(_id: $id, answer: $answer) {
       _id
       question
+      answer
       industry
       role
       experience
-      answer
+    }
+    addQuestionToUser(userId: $userId, questionId: $questionId) {
+      _id
+      name
+      email
+      password
+      questions {
+        _id
+        question
+        answer
+        feedback
+        industry
+        role
+        experience
+      }
     }
   }
 `;
@@ -44,7 +65,8 @@ const Questions = () => {
   // Define state to track the user's input
   const [inputValue, setInputValue] = useState("");
 
-  const [addAnswer] = useMutation(ADD_ANSWER);
+  const [addQuestionToUser, { data, loading, error }] =
+    useMutation(ADD_QUESTION_TO_USER);
 
   // Function to handle user input
   const handleInputChange = (event) => {
@@ -58,10 +80,12 @@ const Questions = () => {
     // Update the userResponse in the InterviewContext with the user's input
     setUserResponse(inputValue);
 
-    const { data } = await addAnswer({
+    const { data } = await addQuestionToUser({
       variables: {
         id: globalData._id,
         answer: inputValue,
+        userId: Auth.getProfile().data._id,
+        questionId: globalData._id,
       },
     });
 
