@@ -1,8 +1,8 @@
 // user stats
 // access past interviews + feedback
 // INCLUDE IN NAVIGATION
-import { useState } from "react";
-import { useMutation, gql } from "@apollo/client";
+import { useEffect, useState } from "react";
+import { useQuery, useMutation, gql } from "@apollo/client";
 import Auth from "../utils/auth";
 import { useNavigate } from "react-router-dom";
 
@@ -18,6 +18,26 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 
+const GET_USER = gql`
+  query FindUserById($findUserByIdId: String!) {
+    findUserById(id: $findUserByIdId) {
+      _id
+      name
+      email
+      password
+      questions {
+        _id
+        question
+        answer
+        feedback
+        industry
+        role
+        experience
+      }
+    }
+  }
+`;
+
 const DELETE_USER = gql`
   mutation DeleteUser($id: String!) {
     deleteUser(_id: $id) {
@@ -30,21 +50,30 @@ const DELETE_USER = gql`
 `;
 
 const Stats = () => {
-  const [deleteUser, { data, loading, error }] = useMutation(DELETE_USER);
-  const navigate = useNavigate();
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const {
+    data: dataQueries,
+    loading: loadingQueries,
+    error: errorQueries,
+  } = useQuery(GET_USER, { variables: { id: Auth.getProfile().data._id } });
+
+  console.log(dataQueries);
+
+  const [
+    deleteUser,
+    { data: dataMutations, loading: loadingMutations, error: errorMutations },
+  ] = useMutation(DELETE_USER);
 
   const deleteAccount = async () => {
-    const userId = Auth.getProfile().data._id;
-
-    const { data } = await deleteUser({
+    const { dataMutations } = await deleteUser({
       variables: {
-        id: userId,
+        id: Auth.getProfile().data._id,
       },
     });
 
     Auth.logout();
   };
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
     <>

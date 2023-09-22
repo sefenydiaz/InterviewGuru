@@ -28,6 +28,7 @@ const GET_FEEDBACK = gql`
     }
   }
 `;
+
 const Feedback = () => {
   const [getFeedback, { data, loading, error }] = useMutation(GET_FEEDBACK);
 

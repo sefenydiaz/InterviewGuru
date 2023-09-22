@@ -17,7 +17,6 @@ type User {
     questions: [Question]
 }
 
-
 type Auth {
     token: ID!
     user: User
@@ -27,7 +26,7 @@ type Query {
     questions: [Question!]
     question(_id: ID!): Question!
     allUsers: [User!]
-    findUserById(id: ID!): User!
+    findUserById(id: String!): User!
 }
 
 type Mutation {
