@@ -85,26 +85,30 @@ const Stats = () => {
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 
+  const userQuestions = dataQueries.findUserById.questions;
+
   return (
     <>
-      <Card>
-        <CardBody>
-          <Stack divider={<StackDivider />} spacing="4">
-            <Box>
-              <Text>Question: This is where the question goes?</Text>
-              <Text>Answer: This is where the answer goes.</Text>
-              <Text>Feedback: This is where the feedback goes.</Text>
-            </Box>
-            <Box>
-              <Text>Industry: This is where the industry goes.</Text>
-              <Text>Role: This is where the role goes.</Text>
-              <Text>
-                Experience Level: This is where the experience level goes.
-              </Text>
-            </Box>
-          </Stack>
-        </CardBody>
-      </Card>
+      {userQuestions.map((question, index) => {
+        return (
+          <Card my="5" key={index} value={question}>
+            <CardBody>
+              <Stack divider={<StackDivider />} spacing="4">
+                <Box>
+                  <Text>Question: {question.question} </Text>
+                  <Text>Answer: {question.answer} </Text>
+                  <Text>Feedback: {question.feedback}</Text>
+                </Box>
+                <Box>
+                  <Text>Industry: {question.industry}</Text>
+                  <Text>Role: {question.role}</Text>
+                  <Text>Experience Level: {question.experience} years</Text>
+                </Box>
+              </Stack>
+            </CardBody>
+          </Card>
+        );
+      })}
 
       <Button
         data-test="modal-button"
