@@ -31,26 +31,6 @@ const ADD_QUESTION = gql`
   }
 `;
 
-const ADD_QUESTION_TO_USER = gql`
-  mutation AddQuestionToUser($userId: String!, $questionId: String!) {
-    addQuestionToUser(userId: $userId, questionId: $questionId) {
-      _id
-      email
-      name
-      password
-      questions {
-        _id
-        question
-        answer
-        feedback
-        industry
-        role
-        experience
-      }
-    }
-  }
-`;
-
 const Form = () => {
   // store form input values
   const [formData, setFormData] = useState({
@@ -60,8 +40,6 @@ const Form = () => {
   });
 
   const [addQuestion, { data, loading, error }] = useMutation(ADD_QUESTION);
-  const [addQuestionToUser, { data, loading, error }] =
-    useMutation(ADD_QUESTION_TO_USER);
   const navigate = useNavigate();
   const handleInputChange = (event) => {
     const { name, value } = event.target;

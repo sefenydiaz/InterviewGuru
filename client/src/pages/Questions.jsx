@@ -28,6 +28,26 @@ const ADD_ANSWER = gql`
   }
 `;
 
+const ADD_QUESTION_TO_USER = gql`
+  mutation AddQuestionToUser($userId: String!, $questionId: String!) {
+    addQuestionToUser(userId: $userId, questionId: $questionId) {
+      _id
+      name
+      email
+      password
+      questions {
+        _id
+        question
+        answer
+        feedback
+        industry
+        role
+        experience
+      }
+    }
+  }
+`;
+
 const Questions = () => {
   const {
     updateQuestion,
@@ -45,6 +65,7 @@ const Questions = () => {
   const [inputValue, setInputValue] = useState("");
 
   const [addAnswer] = useMutation(ADD_ANSWER);
+  const [addQuestionToUser] = useMutation(ADD_QUESTION_TO_USER);
 
   // Function to handle user input
   const handleInputChange = (event) => {
