@@ -92,6 +92,7 @@ const Questions = () => {
     console.log(data);
 
     updateGlobalData(data.addAnswer);
+    console.log(globalData);
 
     navigate("/feedback");
   };
