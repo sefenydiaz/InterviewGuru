@@ -1,5 +1,5 @@
-export const addUser = `mutation AddUser($name: String!, $email: String!, $password: String!) {
-    addUser(name: $name, email: $email, password: $password) {
+export const addUser = `mutation {
+    addUser(name: "Test User", email: "test.user@gmail.com", password: "TestUser12345!") {
       token
       user {
         _id
