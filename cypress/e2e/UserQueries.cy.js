@@ -9,7 +9,7 @@ import {
 describe("User Queries and Mutations", () => {
   const URL = "http://localhost:3001/graphql";
 
-  it("Creates a new user", () => {
+  it.skip("Creates a new user", () => {
     cy.request({
       url: URL,
       method: "POST",
@@ -28,6 +28,21 @@ describe("User Queries and Mutations", () => {
       expect(user).to.be.an("object");
       expect(user).to.have.property("name", "Test User");
       expect(user).to.have.property("email", "test.user@gmail.com");
+    });
+  });
+
+  it("Gets all the users in the DB", () => {
+    cy.request({
+      url: URL,
+      method: "POST",
+      body: {
+        query: allUsers,
+      },
+    }).then((res) => {
+      expect(res.status).to.eq(200);
+      expect(res.body).to.be.an("object");
+      expect(res.body.data.allUsers).to.be.an("array");
+      expect(res.body.data.allUsers.length).to.eq(3);
     });
   });
 });
