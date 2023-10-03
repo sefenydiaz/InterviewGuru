@@ -40,7 +40,7 @@ export const findUserById = `query FindUserById($findUserByIdId: String!) {
     }
   }`;
 
-export const deleteUser = `mutation DeleteUser($id: String!) {
+export const deleteUser = `mutation {
     deleteUser(_id: $id) {
       _id
       name
