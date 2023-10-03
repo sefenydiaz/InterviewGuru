@@ -97,7 +97,8 @@ const Stats = () => {
             <CardBody>
               <Stack divider={<StackDivider />} spacing="4">
                 <Box>
-                  <Text>Question: {question.question} </Text>
+                  <Text>Question: </Text>
+                  <Text>{question.question} </Text>
                   <Text>Answer: {question.answer} </Text>
                   <Text>Feedback: {question.feedback}</Text>
                 </Box>
