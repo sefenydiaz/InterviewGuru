@@ -8,12 +8,17 @@ import Auth from "../utils/auth";
 import {
   FormControl,
   FormLabel,
-  FormErrorMessage,
-  FormHelperText,
-  Select,
   Input,
   Button,
-  Container,
+  ButtonGroup,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  useDisclosure,
 } from "@chakra-ui/react";
 
 const ADD_QUESTION_TO_USER = gql`
@@ -61,6 +66,7 @@ const Questions = () => {
 
   const { globalData, updateGlobalData } = useGlobalData();
   const navigate = useNavigate();
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   // Define state to track the user's input
   const [inputValue, setInputValue] = useState("");
@@ -113,9 +119,22 @@ const Questions = () => {
             value={inputValue}
           />
         </FormControl>
-        <Button data-test="submit-button" type="submit" my={3}>
-          Submit
-        </Button>
+        <ButtonGroup my={3}>
+          <Button data-test="submit-button" type="submit">
+            Submit
+          </Button>
+          <Button onClick={onOpen}>Speech-to-Text &#128483;</Button>
+        </ButtonGroup>
+
+        <Modal isOpen={isOpen} onClose={onClose}>
+          <ModalOverlay />
+          <ModalContent>
+            <ModalHeader>Record your answer...</ModalHeader>
+            <ModalBody>
+              <Button>&#x1F534;</Button>
+            </ModalBody>
+          </ModalContent>
+        </Modal>
       </form>
     </div>
   );
