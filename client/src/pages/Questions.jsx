@@ -103,6 +103,15 @@ const Questions = () => {
     navigate("/feedback");
   };
 
+  const handleRecordStart = () => {
+    const constraints = {
+      video: false,
+      audio: true,
+    };
+
+    navigator.mediaDevices.getUserMedia(constraints);
+  };
+
   return (
     <div>
       <h2 data-test="question-header">Question:</h2>
@@ -132,7 +141,9 @@ const Questions = () => {
             <ModalHeader>Record your answer...</ModalHeader>
             <ModalCloseButton />
             <ModalBody>
-              <Button my={5}>&#x1F534;</Button>
+              <Button my={5} onClick={handleRecordStart}>
+                &#x1F534;
+              </Button>
             </ModalBody>
           </ModalContent>
         </Modal>
