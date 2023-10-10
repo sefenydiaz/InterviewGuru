@@ -126,12 +126,13 @@ const Questions = () => {
           <Button onClick={onOpen}>Speech-to-Text &#128483;</Button>
         </ButtonGroup>
 
-        <Modal isOpen={isOpen} onClose={onClose}>
+        <Modal isOpen={isOpen} onClose={onClose} isCentered>
           <ModalOverlay />
           <ModalContent>
             <ModalHeader>Record your answer...</ModalHeader>
+            <ModalCloseButton />
             <ModalBody>
-              <Button>&#x1F534;</Button>
+              <Button my={5}>&#x1F534;</Button>
             </ModalBody>
           </ModalContent>
         </Modal>
