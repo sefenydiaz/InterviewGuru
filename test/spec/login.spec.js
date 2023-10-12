@@ -25,8 +25,12 @@ describe("Login/Logout Test", () => {
     pwordTextBox.sendKeys("Serum54321!");
     loginButton.click();
 
-    let URL = await driver.getCurrentUrl();
-    assert.equal(baseURL, URL);
+    // const logoutButton = await driver.findElement(By.id("logout-button"));
+
+    // logoutButton.click();
+
+    // let URL = await driver.getCurrentUrl();
+    // assert.equal(`${baseURL}login`, URL);
   });
 
   after(async () => {

@@ -58,6 +58,7 @@ const Header = () => {
                 <Link to="/login">
                   <Button
                     data-test="logout-button"
+                    id="logout-button"
                     className="btn btn-lg btn-light m-2"
                     onClick={logout}
                   >
