@@ -143,6 +143,7 @@ function Login() {
             </FormControl>
             <Button
               data-test="login-button"
+              id="login-button"
               mt={4}
               w="100%"
               style={{ cursor: "pointer" }}

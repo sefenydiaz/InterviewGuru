@@ -12,6 +12,10 @@ const loginTest = async () => {
     assert.equal("Interview Guru", title);
 
     await driver.manage().setTimeouts({ implicit: 500 });
+
+    const emailTextBox = await driver.findElement(By.id("email-input"));
+    const pwordTextBox = await driver.findElement(By.id("pword-input"));
+    const loginButton = await driver.findElement(By.id("login-button"));
   } catch (error) {
     console.log(error);
   } finally {
