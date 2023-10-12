@@ -121,6 +121,7 @@ function Login() {
                 placeholder="Email"
                 name="email"
                 type="email"
+                id="email-input"
                 value={formState.email}
                 onChange={handleChange}
                 required
@@ -133,6 +134,7 @@ function Login() {
                 placeholder="Password"
                 name="password"
                 type="password"
+                id="pword-input"
                 value={formState.password}
                 onChange={handleChange}
                 required
@@ -141,6 +143,7 @@ function Login() {
             </FormControl>
             <Button
               data-test="login-button"
+              id="login-button"
               mt={4}
               w="100%"
               style={{ cursor: "pointer" }}

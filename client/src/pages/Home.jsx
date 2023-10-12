@@ -18,7 +18,12 @@ function Home() {
     <ChakraProvider>
       <Container maxW="md" centerContent mt={10}>
         <VStack spacing={6}>
-          <Heading data-test="welcome-header" as="h1" size="xl">
+          <Heading
+            id="welcome-header"
+            data-test="welcome-header"
+            as="h1"
+            size="xl"
+          >
             Welcome to InterviewGuru! Click below to begin.
           </Heading>
           <Link to="/form">
