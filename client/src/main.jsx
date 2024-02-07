@@ -9,9 +9,7 @@ import Form from "./pages/Form.jsx";
 import Questions from "./pages/Questions.jsx";
 import Feedback from "./pages/Feedback.jsx";
 import Stats from "./pages/Stats.jsx";
-
 import NotFound from "./pages/NotFound.jsx";
-
 import Welcome from "./pages/Welcome.jsx";
 
 const router = createBrowserRouter([
